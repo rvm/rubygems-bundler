@@ -1,7 +1,7 @@
 require 'yaml'
 require 'rubygems/installer'
 
-class Gem::Commands::RegenerateBinstubsCommand < Gem::Command
+class RegenerateBinstubsCommand < Gem::Command
   def initialize
     super 'regenerate_binstubs', 'Re run generation of executable wrappers for gems.'
   end
@@ -28,16 +28,30 @@ class Gem::Commands::RegenerateBinstubsCommand < Gem::Command
 
   def execute
     name = get_one_optional_argument || ''
-    specs = Gem.source_index.search Gem::Dependency.new /^#{name}/i, Gem::Requirement.default
+    specs = installed_gems.select{|spec| spec.name =~ /^#{name}/i }
     specs.each do |spec|
       unless spec.executables.empty?
-        puts "#{spec.name} #{spec.version}"
-        inst = Gem::Installer.new Dir[File.join(Gem.dir, 'cache', spec.file_name)].first, :wrappers => true, :force => true
-        class << inst
-          include Gem::BundlerInstaller
+        cache_gem = File.join(Gem.dir, 'cache', spec.file_name)
+        if File.exist? cache_gem
+          puts "#{spec.name} #{spec.version}"
+          inst = Gem::Installer.new Dir[cache_gem].first, :wrappers => true, :force => true
+          RubyGemsBundlerInstaller.bundler_generate_bin(inst)
+        else
+          puts "##{spec.name} #{spec.version} not found in GEM_HOME"
         end
-        inst.bundler_generate_bin
       end
     end
+  end
+
+  private
+  def installed_gems
+    if Gem::VERSION > '1.8' then
+      Gem::Specification.to_a
+    else
+      Gem.source_index.map{|name,spec| spec}
+    end
+
+    Gem::VERSION > '1.8' ? Gem::Specification._all : Gem.source_index.map{|name,spec| spec}
+
   end
 end
