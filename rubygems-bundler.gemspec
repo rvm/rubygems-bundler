@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "rubygems-bundler"
-  s.version = "0.1.3"
+  s.version = "0.1.4"
   s.date = "2011-06-08"
   s.summary = "Make rubygems generate bundler aware executable wrappers"
   s.email = "mpapis@gmail.com"
@@ -17,4 +17,30 @@ Gem::Specification.new do |s|
               "rubygems-bundler.gemspec",
               "LICENSE",
             ]
+  s.post_install_message = <<-TEXT
+========================================================================
+
+Thanks for installing rubygems-bundler!
+
+It is important you understand that this gem can make your gem 
+executables load in versions specified in Gemfile!
+
+To make all the executables bundler compatible run:
+
+    gem regenerate_binstubs # only once
+
+To always use bundler add the following line to ~/.rvmrc or ~/.bashrc
+
+    export USE_BUNDLER=force
+
+now relogin or call in every open shell:
+
+    export USE_BUNDLER=force
+
+For more information read:
+
+    https://github.com/mpapis/rubygems-bundler
+
+========================================================================
+TEXT
 end
