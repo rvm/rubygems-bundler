@@ -1,4 +1,3 @@
-require 'yaml'
 require 'rubygems/installer'
 
 class RegenerateBinstubsCommand < Gem::Command
