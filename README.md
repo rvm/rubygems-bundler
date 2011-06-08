@@ -24,8 +24,8 @@ with your every command.
 Please note that method introduced by this gem is not approved
 by rubygems neither bundler teams becouse of the following problem:
 
-Beware, it is important to understund that this gem can make
-your gem execetables load in versions specified in Gemfile!
+Beware, it is important you understand that this gem can make
+your gem executables load in versions specified in Gemfile!
 
 The problem with Gemfile is that you can have few of them,
 so expect that gem version for executable will be taken from
