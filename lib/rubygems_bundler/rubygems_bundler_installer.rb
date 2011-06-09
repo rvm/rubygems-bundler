@@ -44,7 +44,7 @@ if try_bundler || force_bundler
   begin
     require 'bundler/setup'
   rescue LoadError
-    raise '\n\nPlease \'gem install bundler\' first.\n\n' if force_bundler
+    raise '\n\nPlease \\\'gem install bundler\\\' first.\n\n' if force_bundler
     try_bundler = false
   end
 end
