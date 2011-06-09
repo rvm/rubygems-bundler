@@ -6,12 +6,18 @@ module RubyGemsBundlerInstaller
     bindir = inst.bin_dir ? inst.bin_dir : Gem.bindir(inst.gem_home)
     inst.spec.executables.each do |filename|
       filename.untaint
-      bin_script_path = File.join bindir, inst.formatted_program_filename(filename)
-      FileUtils.rm_f bin_script_path
-      File.open bin_script_path, 'wb', 0755 do |file|
-        file.print bundler_app_script_text(inst, filename)
+      original = File.join inst.gem_dir, inst.spec.bindir, filename
+      if File.exists?( original )
+        bin_script_path = File.join bindir, inst.formatted_program_filename(filename)
+        FileUtils.rm_f bin_script_path
+        File.open bin_script_path, 'wb', 0755 do |file|
+          file.print bundler_app_script_text(inst, filename)
+        end
+        inst.say bin_script_path if Gem.configuration.really_verbose
+      else
+        inst.say "Can not find #{inst.spec.name} in GEM_PATH"
+        break
       end
-      inst.say bin_script_path if Gem.configuration.really_verbose
     end
   end
 
@@ -38,7 +44,7 @@ if try_bundler || force_bundler
   begin
     require 'bundler/setup'
   rescue LoadError
-    raise '\n\nPlease install bundler first.\n\n' if force_bundler
+    raise '\n\nPlease \'gem install bundler\' first.\n\n' if force_bundler
     try_bundler = false
   end
 end

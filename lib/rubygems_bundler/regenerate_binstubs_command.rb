@@ -30,10 +30,17 @@ class RegenerateBinstubsCommand < Gem::Command
     specs = installed_gems.select{|spec| spec.name =~ /^#{name}/i }
     specs.each do |spec|
       unless spec.executables.empty?
-        cache_gem = File.join(Gem.dir, 'cache', spec.file_name)
+        org_gem_path = Gem.path.find{|path|
+          File.exists? File.join path, 'gems', spec.full_name
+        } || Gem.dir
+        cache_gem = File.join(org_gem_path, 'cache', spec.file_name)
         if File.exist? cache_gem
           puts "#{spec.name} #{spec.version}"
           inst = Gem::Installer.new Dir[cache_gem].first, :wrappers => true, :force => true
+          org_gem_path = File.join org_gem_path, 'gems'
+          inst.spec.instance_variable_set :@gems_dir, org_gem_path
+          inst.spec.instance_variable_set :@gem_dir, nil
+          inst.spec.loaded_from = org_gem_path
           RubyGemsBundlerInstaller.bundler_generate_bin(inst)
         else
           puts "##{spec.name} #{spec.version} not found in GEM_HOME"
