@@ -43,7 +43,7 @@ class RegenerateBinstubsCommand < Gem::Command
           inst.spec.loaded_from = org_gem_path
           RubyGemsBundlerInstaller.bundler_generate_bin(inst)
         else
-          puts "##{spec.name} #{spec.version} not found in GEM_HOME"
+          puts "##{spec.name} #{spec.version} not found in GEM_PATH"
         end
       end
     end
@@ -56,8 +56,5 @@ class RegenerateBinstubsCommand < Gem::Command
     else
       Gem.source_index.map{|name,spec| spec}
     end
-
-    Gem::VERSION > '1.8' ? Gem::Specification._all : Gem.source_index.map{|name,spec| spec}
-
   end
 end
