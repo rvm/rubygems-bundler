@@ -96,3 +96,4 @@ Now for running haml can be controlled if it will using bundler code or not:
  - Wayne E. Seguin : support in writing good code
  - Evan Phoenix    : support on rubygems internalls
  - Andre Arko      : claryfications how rubygems/bundler works
+ - Loren Segal     : shebang customization idea and explanations
