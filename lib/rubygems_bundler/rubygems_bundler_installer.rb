@@ -6,7 +6,7 @@ module RubyGemsBundlerInstaller
     bindir = inst.bin_dir ? inst.bin_dir : Gem.bindir(inst.gem_home)
     inst.spec.executables.each do |filename|
       filename.untaint
-      original = File.join inst.gem_dir, inst.spec.bindir, filename
+      original = File.join bindir, filename
       if File.exists?( original )
         bin_script_path = File.join bindir, inst.formatted_program_filename(filename)
         FileUtils.rm_f bin_script_path
@@ -24,7 +24,8 @@ module RubyGemsBundlerInstaller
 
   def self.shebang(inst, bin_file_name)
     ruby_name = Gem::ConfigMap[:ruby_install_name] if @env_shebang
-    path = inst.spec.bin_file bin_file_name
+    bindir = inst.bin_dir ? inst.bin_dir : Gem.bindir(inst.gem_home)
+    path = File.join bindir, inst.formatted_program_filename(bin_file_name)
     first_line = File.open(path, "rb") {|file| file.gets}
     @@env_path ||= Gem::Installer::ENV_PATHS.find {|env_path| File.executable? env_path }
 

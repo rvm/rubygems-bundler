@@ -10,7 +10,8 @@ File.open('nmake.bat', 'w') { |f| }
 
 # Copy wrapper
 require 'fileutils'
-wrapper=File.expand_path('../../../bin/bundler_wrapper',File.absolute_path(__FILE__))
-destination=File.expand_path('bin/bundler_wrapper',Gem.dir)
+wrapper=File.expand_path('../../bin/bundler_wrapper', Dir.getwd)
+destination=File.expand_path('bin/bundler_wrapper', ENV["GEM_HOME"])
+FileUtils.mkdir_p(File.join(ENV["GEM_HOME"], 'bin'), :verbose => true)
 FileUtils.cp(wrapper, destination, :verbose => true)
 File.chmod(0755, destination)
