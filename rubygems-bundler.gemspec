@@ -1,29 +1,33 @@
 Gem::Specification.new do |s|
   s.name = "rubygems-bundler"
-  s.version = "0.1.5"
-  s.date = "2011-06-08"
+  s.version = "0.2.0"
+  s.date = "2011-06-12"
   s.summary = "Make rubygems generate bundler aware executable wrappers"
   s.email = "mpapis@gmail.com"
   s.homepage = "https://github.com/mpapis/rubygems-bundler"
-  s.description = "Integrate Rubygems, Bundler and RVM"
+  s.description = "Integrate Rubygems and Bundler"
   s.has_rdoc = false
   s.authors = ["Michal Papis"]
   s.files = [
-              "lib/rubygems_bundler/regenerate_binstubs_command.rb",
-              "lib/rubygems_bundler/rubygems_bundler_installer.rb",
-              "lib/rubygems_bundler/fix_wrapper.rb",
-              "lib/rubygems_plugin.rb",
-              "README.md",
-              "rubygems-bundler.gemspec",
-              "LICENSE",
-            ]
+    "bin/bundler_wrapper",
+    "ext/wrapper_installer/extconf.rb",
+    "lib/rubygems_bundler/regenerate_binstubs_command.rb",
+    "lib/rubygems_bundler/rubygems_bundler_installer.rb",
+    "lib/rubygems_bundler/fix_wrapper.rb",
+    "lib/rubygems_plugin.rb",
+    "LICENSE",
+    "README.md",
+    "rubygems-bundler.gemspec",
+  ]
+  s.extensions = ["ext/wrapper_installer/extconf.rb"]
   s.post_install_message = <<-TEXT
-========================================================================
+===============================================================================
 
-Thanks for installing rubygems-bundler!
+rubygems-bundler allows running gem executables in Gemfile specified versions!
 
-It is important you understand that this gem can make your gem 
-executables load in versions specified in Gemfile!
+First step is to add following line to ~/.gemrc
+
+    custom_shebang: $env bundler_wrapper
 
 To make all the executables bundler compatible run:
 
@@ -33,7 +37,7 @@ To always use bundler add the following line to ~/.rvmrc or ~/.bashrc
 
     export USE_BUNDLER=force
 
-now relogin or call in every open shell:
+Relogin or call in every open shell:
 
     export USE_BUNDLER=force
 
@@ -41,6 +45,6 @@ For more information read:
 
     https://github.com/mpapis/rubygems-bundler
 
-========================================================================
+===============================================================================
 TEXT
 end

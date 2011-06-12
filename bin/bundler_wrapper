@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+
+use_bundler = (ENV['USE_BUNDLER']||'').downcase
+try_bundler = %w{try check possibly}.include? use_bundler
+force_bundler = %w{force require yes true on}.include? use_bundler
+
+if try_bundler || force_bundler
+  begin
+    require 'bundler/setup'
+  rescue LoadError
+    raise "\n\nPlease 'gem install bundler' first.\n\n" if force_bundler
+  end
+end
+
+eval File.read(ARGV[0])

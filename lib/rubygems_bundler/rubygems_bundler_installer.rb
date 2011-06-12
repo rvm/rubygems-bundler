@@ -26,7 +26,7 @@ module RubyGemsBundlerInstaller
     ruby_name = Gem::ConfigMap[:ruby_install_name] if @env_shebang
     path = inst.spec.bin_file bin_file_name
     first_line = File.open(path, "rb") {|file| file.gets}
-    @@env_path ||= inst::ENV_PATHS.find {|env_path| File.executable? env_path }
+    @@env_path ||= Gem::Installer::ENV_PATHS.find {|env_path| File.executable? env_path }
 
     if /\A#!/ =~ first_line then
       # Preserve extra words on shebang line, like "-w". Thanks RPA.
