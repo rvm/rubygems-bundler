@@ -15,4 +15,4 @@ if try_bundler || force_bundler
 end
 
 file=ARGV.shift
-eval File.read(file)
+eval File.read(file), binding, file
