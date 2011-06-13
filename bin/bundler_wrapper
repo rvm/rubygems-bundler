@@ -14,4 +14,5 @@ if try_bundler || force_bundler
   end
 end
 
-eval File.read(ARGV[0])
+file=ARGV.shift
+eval File.read(file)
