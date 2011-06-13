@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "rubygems-bundler"
-  s.version = "0.2.2"
+  s.version = "0.2.3"
   s.date = "2011-06-13"
   s.summary = "Make rubygems generate bundler aware executable wrappers"
   s.email = "mpapis@gmail.com"
