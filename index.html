@@ -2,8 +2,7 @@
 <html>
 <head>
   <meta charset='utf-8'>
-
-  <title>mpapis/rubygems-bundler @ GitHub</title>
+  <title>mpapis/rubygems-bundler @ GitHub - no more 'bundle exec ...'</title>
 
   <style type="text/css">
     body {
@@ -42,35 +41,34 @@
         <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
     </div>
 
-    <h1><a href="http://github.com/mpapis/rubygems-bundler">rubygems-bundler</a>
-      <span class="small">by <a href="http://github.com/mpapis">mpapis</a></span></h1>
+<h1><a href="http://github.com/mpapis/rubygems-bundler">rubygems-bundler</a>
+  <span class="small">by <a href="http://github.com/mpapis">mpapis</a></span></h1>
 
-    <div class="description">
-      no more `bundle exec ...`
-    </div>
+<div class="description">
+    no more `bundle exec ...`
+</div>
 
-    <p>This gem is intended to fill in the integration gap between Bundler and Rubygems, it also backports shebang customization from rubygems 1.9 to older versions - down to 1.3.7.
+<p>This gem is intended to fill in the integration gap between Bundler and Rubygems, 
+it also backports shebang customization from rubygems 1.9 to older versions - down to 1.3.7.</p>
+<p>With this gem rubygems generated wrappers will allow to use bundler when asked for.</p>
+<p>Using this gem solves problem of calling 'bundle exec ...' with your every command.</p>
+<p>Please note that this gem can make your gem executables load in versions specified in Gemfile!</p>
+<p>The problem with Gemfile is that you can have few of them, 
+so expect that gem version for executable will be taken from ~/Gemfile 
+when your project is in ~/projects/my_project and does not contain Gemfile</p>
+<p>Last note is that bundler handling can be used only when bundler is installed, but you will be warned when it is </p>
 
-With this gem rubygems generated wrappers will allow to use bundler when asked for.
-
-Using this gem solves problem of calling 'bundle exec ...' with your every command.
-
-Please note that this gem can make your gem executables load in versions specified in Gemfile!
-
-The problem with Gemfile is that you can have few of them, so expect that gem version for executable will be taken from ~/Gemfile when your project is in ~/projects/my_project and does not contain Gemfile
-
-Last note is that bundler handling can be used only when bundler is installed, but you will be warned when it is </p><h2>Dependencies</h2>
+<h2>Dependencies</h2>
 <p>rubygems</p>
+
 <h2>Install</h2>
-<p>
+<p><pre>
     gem install rubygems-bundler
+</pre></p>
+<p>And follow the on screen instructions</p>
 
-And follow the on screen instructions</p>
 <h2>Authors</h2>
-<p>Michal Papis (mpapis@gmail.com)<br/>Igor Zubkov (igor.zubkov@gmail.com)      </p>
-<h2>Contact</h2>
 <p>Michal Papis (mpapis@gmail.com)</p>
-
 
     <h2>Download</h2>
     <p>
