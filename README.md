@@ -45,7 +45,12 @@ To force usage of bundler:
 
     export USE_BUNDLER=force
 
-To make your choice persistent put this into `~/.bashrc` or `~/.rvmrc`.
+Some gems should not be called with bundler support,
+to blacklist them use the following line:
+
+    BUNDLER_BLACKLIST="cheat heroku"
+
+To make your choices persistent put them into `~/.bashrc` or `~/.rvmrc`.
 
 # How it works
 

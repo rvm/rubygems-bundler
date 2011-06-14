@@ -2,11 +2,13 @@
 
 require 'rubygems'
 
+original_file=ARGV[0]
 use_bundler = (ENV['USE_BUNDLER']||'').downcase
 try_bundler = %w{try check possibly}.include? use_bundler
 force_bundler = %w{force require yes true on}.include? use_bundler
+blacklisted = (ENV['BUNDLER_BLACKLIST']||'').split(/\s/).include? File.basename(original_file)
 
-if try_bundler || force_bundler
+if !blacklisted && (try_bundler || force_bundler)
   begin
     require 'bundler/setup'
   rescue LoadError
@@ -14,5 +16,5 @@ if try_bundler || force_bundler
   end
 end
 
-file=ARGV.shift
-eval File.read(file), binding, file
+ARGV.shift
+eval File.read(original_file), binding, original_file
