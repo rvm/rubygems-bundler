@@ -12,7 +12,7 @@ And follow the on screen instructions
 # Description
 
 This gem is intended to fill in the integration gap between
-Bundler and Rubygems, it also backoports shebang customization
+Bundler and Rubygems, it also backports shebang customization
 from rubygems 1.9 to older versions - down to 1.3.7.
 
 With this gem rubygems generated wrappers will allow to
