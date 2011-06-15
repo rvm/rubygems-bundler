@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.date = "2011-06-13"
   s.summary = "Make rubygems generate bundler aware executable wrappers"
   s.email = "mpapis@gmail.com"
-  s.homepage = "https://github.com/mpapis/rubygems-bundler"
+  s.homepage = "http://mpapis.github.com/rubygems-bundler"
   s.description = "Integrate Rubygems and Bundler"
   s.has_rdoc = false
   s.authors = ["Michal Papis"]
