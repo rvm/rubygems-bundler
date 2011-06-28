@@ -3,10 +3,12 @@
 require 'rubygems'
 
 original_file=ARGV[0]
+original_file_name=File.basename(original_file)
+ENV['USE_BUNDLER'] = 'no' if original_file_name =~ /^bundle/
 use_bundler = (ENV['USE_BUNDLER']||'').downcase
 try_bundler = %w{try check possibly}.include? use_bundler
 force_bundler = %w{force require yes true on}.include? use_bundler
-blacklisted = (ENV['BUNDLER_BLACKLIST']||'').split(/\s/).include? File.basename(original_file)
+blacklisted = (ENV['BUNDLER_BLACKLIST']||'').split(/\s/).include? original_file_name
 
 if !blacklisted && (try_bundler || force_bundler)
   begin
