@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.7
+date: 2011-09-21
+
+ - added uninstallation note
+ - possibly fixed installation issue for older rubygems version (yaml related)
+
 ## 0.2.6
 date: 2011-09-16
 

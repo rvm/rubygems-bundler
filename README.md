@@ -86,6 +86,16 @@ Now for running haml can be controlled if it will using bundler code or not:
     mpapis@niczsoft:~/test> USE_BUNDLER=try haml -v
     Haml 3.1.1 (Separated Sally)
 
+# Uninstallation
+
+Before uninstalling change a line in `~/.gemrc` to:
+
+    custom_shebang: $env ruby
+
+and run `gem regenerate_binstubs`
+
+this will set all gems to `/usr/bin/env ruby` which is one of the safest choices (especially when using rvm).
+
 # Author
 
  - Michal Papis <mpapis@gmail.com>
