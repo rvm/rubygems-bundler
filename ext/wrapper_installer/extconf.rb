@@ -11,8 +11,9 @@ File.open('nmake.bat', 'w') { |f| }
 # Copy wrapper
 require 'fileutils'
 require 'rubygems'
+bindir = Gem.respond_to?(:bindir,true) ? Gem.send(:bindir) : File.join(Gem.dir, 'bin')
 wrapper=File.expand_path('../../bin/ruby_bundler_wrapper', Dir.getwd)
-destination=File.expand_path('bin/ruby_bundler_wrapper', Gem.dir)
-FileUtils.mkdir_p(File.join(Gem.dir, 'bin'), :verbose => true)
+destination=File.expand_path('ruby_bundler_wrapper', bindir)
+FileUtils.mkdir_p(bindir, :verbose => true)
 FileUtils.cp(wrapper, destination, :verbose => true)
 File.chmod(0775, destination)
