@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.has_rdoc = false
   s.authors = ["Michal Papis"]
   s.files = [
-    "bin/bundler_wrapper",
+    "bin/ruby_bundler_wrapper",
     "ext/wrapper_installer/extconf.rb",
     "lib/rubygems_bundler/regenerate_binstubs_command.rb",
     "lib/rubygems_bundler/rubygems_bundler_installer.rb",
@@ -27,7 +27,7 @@ rubygems-bundler allows running gem executables in Gemfile specified versions!
 
 First step is to add following line to ~/.gemrc
 
-    custom_shebang: $env bundler_wrapper
+    custom_shebang: $env ruby_bundler_wrapper
 
 To make all the executables bundler compatible run:
 
