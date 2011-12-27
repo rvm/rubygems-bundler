@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.8
+date: 2011-12-27
+
+ - fix #8 fixed bindir for systems with Gem.bindir outside of Gem.dir
+ - merge #9 Prepend "ruby_" to wrapper filename
+
 ## 0.2.7
 date: 2011-09-21
 

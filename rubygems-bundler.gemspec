@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = "rubygems-bundler"
-  s.version = "0.2.7"
-  s.date = "2011-09-21"
+  s.version = "0.2.8"
+  s.date = "2011-12-27"
   s.summary = "Make rubygems generate bundler aware executable wrappers"
   s.email = "mpapis@gmail.com"
   s.homepage = "http://mpapis.github.com/rubygems-bundler"
@@ -21,9 +21,11 @@ Gem::Specification.new do |s|
   ]
   s.extensions = ["ext/wrapper_installer/extconf.rb"]
   s.post_install_message = <<-TEXT
-===============================================================================
+==================================================================================
 
 rubygems-bundler allows running gem executables in Gemfile specified versions!
+
+Note: from 0.2.8 the wrapper name changes, you need to repeat instructions bellow.
 
 First step is to add following line to ~/.gemrc
 
@@ -45,6 +47,6 @@ For more information read:
 
     https://github.com/mpapis/rubygems-bundler
 
-===============================================================================
+==================================================================================
 TEXT
 end
