@@ -24,6 +24,10 @@ Or,
 
     include: [irb, ruby]
 
+## Problems?
+
+Things not going the way you'd like? Try your command again with NOEXEC_DEBUG=1 set and create a ticket. I'll fix it right away!
+
 ## How does this work?
 
 It adds a script to every execution of ruby via the RUBYOPT environment variable. Then, when you run ruby, it takes a look at your working directory, and every directory above it until it can find a `Gemfile`. If the executable you're running is present in your Gemfile, it switches to using that `Gemfile` instead (via `Bundle.setup`).
