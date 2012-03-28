@@ -1,6 +1,7 @@
 DEBUG = ENV.key?('NOEXEC_DEBUG')
 
 begin
+  require "rubygems"
   require "bundler"
 
   module Bundler
