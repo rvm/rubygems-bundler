@@ -1,3 +1,5 @@
+DEBUG = ENV.key?('NOEXEC_DEBUG')
+
 begin
   require "bundler"
 
@@ -11,7 +13,6 @@ begin
 
   module Noexec
     CURRENT = Dir.pwd
-    DEBUG = ENV.key?('NOEXEC_DEBUG')
 
     extend self
 
@@ -50,5 +51,5 @@ begin
     end
   end
 rescue LoadError
-  warn "bundler not being used, unable to load"
+  warn "bundler not being used, unable to load" if DEBUG
 end
