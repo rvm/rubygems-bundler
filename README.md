@@ -12,6 +12,19 @@ Then, in your .profile (or somewhere you can set env variables)
 
 And you're done!
 
+Alternatively you can use rubygems-bundler to generate wrappers aware of noexec, install:
+
+    gem install rubygems-bundler
+
+change a line in ~/.gemrc to:
+
+    custom_shebang: $env ruby_noexec_wrapper
+
+and run (once):
+
+    gem regenerate_binstubs
+
+
 ## Configuration
 
 Though you can let noexec do it's own thing and rely on looking up your binary via your Gemfile, you can also specify which binaries you want included or excluded. Create a .noexec.yaml file along side any Gemfiles you want to use. Then, to enable (or disable) the usage of your particular binary into your bundle, add an include or exclude section. For example:
