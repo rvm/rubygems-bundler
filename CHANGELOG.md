@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0
+date: 2012-04-02
+
+ - add support for [noexec gem](https://github.com/joshbuddy/noexec)
+   from [Joshua Hull - @joshbuddy](https://github.com/joshbuddy)
+
 ## 0.2.8
 date: 2011-12-27
 

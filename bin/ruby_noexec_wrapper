@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+original_file=ARGV[0]
+ARGV.shift
+$PROGRAM_NAME=original_file
+
+require 'rubygems'
+begin
+  require 'noexec/auto'
+rescue LoadError
+end
+
+eval File.read(original_file), binding, original_file

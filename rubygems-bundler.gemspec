@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = "rubygems-bundler"
-  s.version = "0.2.8"
-  s.date = "2011-12-27"
+  s.version = "0.3.0"
+  s.date = "2012-04-02"
   s.summary = "Make rubygems generate bundler aware executable wrappers"
   s.email = "mpapis@gmail.com"
   s.homepage = "http://mpapis.github.com/rubygems-bundler"
@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.authors = ["Michal Papis"]
   s.files = [
     "bin/ruby_bundler_wrapper",
+    "bin/ruby_noexec_wrapper",
     "ext/wrapper_installer/extconf.rb",
     "lib/rubygems_bundler/regenerate_binstubs_command.rb",
     "lib/rubygems_bundler/rubygems_bundler_installer.rb",

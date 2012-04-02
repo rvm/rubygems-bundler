@@ -52,6 +52,21 @@ to blacklist them use the following line:
 
 To make your choices persistent put them into `~/.bashrc` or `~/.rvmrc`.
 
+# Alternate use with noexec
+
+[Joshua Hull - @joshbuddy](https://github.com/joshbuddy) created
+[noexec gem](https://github.com/joshbuddy/noexec),
+It allows detecting Gemfile and loading Bundler only when it is required.
+
+To automatically use noexec change a line in ~/.gemrc to:
+
+    custom_shebang: $env ruby_noexec_wrapper
+
+And run (once):
+
+    gem regenerate_binstubs
+
+
 # How it works
 
 Installation of gem will make any new installed gem use new bundler
