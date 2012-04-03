@@ -6,8 +6,9 @@ $PROGRAM_NAME=original_file
 
 require 'rubygems'
 begin
-  require 'noexec/auto'
+  require 'rubygems-bundler/noexec'
 rescue LoadError
+  warn "unable to load rubygems-bundler/noexec" if ENV.key?('NOEXEC_DEBUG')
 end
 
 eval File.read(original_file), binding, original_file

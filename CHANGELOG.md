@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.0
+date: 2012-04-03
+
+ - joining forces with noexec from
+   [Joshua Hull - @joshbuddy](https://github.com/joshbuddy)
+
 ## 0.3.0
 date: 2012-04-02
 
