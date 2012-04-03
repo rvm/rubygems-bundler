@@ -42,6 +42,11 @@ Or,
 Things not going the way you'd like? Try your command again with 
 NOEXEC_DEBUG=1 set and create a ticket. I'll fix it right away!
 
+### IRC support:
+
+[#rubygems-bundler on irc.freenode.net](http://webchat.freenode.net/?channels=#rubygems-bundler)
+
+
 ## How does this work?
 
 It adds a script to every execution of ruby via the RUBYOPT environment variable. 
