@@ -16,11 +16,6 @@ Next run (once):
 
 And you're done!
 
-Alternatively, in your .bashrc (or somewhere you can set env variables):
-
-    export RUBYOPT="-r`noexec`"
-
-
 ## Configuration
 
 Though you can let noexec do it's own thing and rely on looking up your binary via your Gemfile, 
