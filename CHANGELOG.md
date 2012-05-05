@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.1
+date: 2012-05-05
+
+ - fix #15 respect --env-shebang
+ - add latest rubygems changes
+
 ## 0.9.0
 date: 2012-04-03
 

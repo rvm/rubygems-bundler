@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.name        = "rubygems-bundler"
   s.version     = RubygemsBundler::VERSION
   s.authors     = ["Josh Hull", "Michal Papis"]
-  s.email       = ["joshbuddy@gmail.com", "mpapis@gmail.conf"]
+  s.email       = ["joshbuddy@gmail.com", "mpapis@gmail.com"]
   s.homepage    = "http://mpapis.github.com/rubygems-bundler"
   s.summary     = %q{Stop using bundle exec}
   s.description = %q{Stop using bundle exec. Integrate Rubygems and Bundler. Make rubygems generate bundler aware executable wrappers.}
@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.executables = ["noexec"]
   s.extensions  = ["ext/wrapper_installer/extconf.rb"]
 
-  # Can do we have to depend on those two ? Can we have two simple tasks doing the same ?
+  # Do we have to depend on those two ? Can we have two simple tasks doing the same ?
   s.add_development_dependency "rake"
   s.add_development_dependency "bundler"
 end
