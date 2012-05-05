@@ -23,15 +23,14 @@ module RubyGemsBundlerInstaller
 
 
   def self.shebang(inst, bin_file_name)
-    ruby_name = Gem::ConfigMap[:ruby_install_name] if @env_shebang
+    ruby_name = Gem::ConfigMap[:ruby_install_name] if inst.options[:env_shebang]
     bindir = inst.bin_dir ? inst.bin_dir : Gem.bindir(inst.gem_home)
     path = File.join bindir, inst.formatted_program_filename(bin_file_name)
     first_line = File.open(path, "rb") {|file| file.gets}
-    @@env_path ||= Gem::Installer::ENV_PATHS.find {|env_path| File.executable? env_path }
 
     if /\A#!/ =~ first_line then
       # Preserve extra words on shebang line, like "-w". Thanks RPA.
-      shebang = first_line.sub(/\A\#!.*?ruby\S*(?=(\s+\S+))/, "#!#{Gem.ruby}")
+      shebang = first_line.sub(/\A\#!.*?ruby\S*((\s+\S+)+)/, "#!#{Gem.ruby}")
       opts = $1
       shebang.strip! # Avoid nasty ^M issues.
     end
@@ -40,7 +39,7 @@ module RubyGemsBundlerInstaller
       which = which.gsub(/\$(\w+)/) do
         case $1
         when "env"
-          @@env_path
+          @env_path ||= Gem::Installer::ENV_PATHS.find {|env_path| File.executable? env_path }
         when "ruby"
           "#{Gem.ruby}#{opts}"
         when "exec"
@@ -58,7 +57,8 @@ module RubyGemsBundlerInstaller
     elsif inst.opts then
       "#!/bin/sh\n'exec' #{ruby_name.dump} '-x' \"$0\" \"$@\"\n#{shebang}"
     else
-      "#!#{@@env_path} #{ruby_name}"
+      @env_path ||= Gem::Installer::ENV_PATHS.find {|env_path| File.executable? env_path }
+      "#!#{@env_path} #{ruby_name}"
     end
   end
 
