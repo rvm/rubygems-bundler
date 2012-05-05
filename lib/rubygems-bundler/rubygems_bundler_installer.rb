@@ -54,7 +54,7 @@ module RubyGemsBundlerInstaller
 
     if not ruby_name then
       "#!#{Gem.ruby}#{opts}"
-    elsif inst.opts then
+    elsif opts then
       "#!/bin/sh\n'exec' #{ruby_name.dump} '-x' \"$0\" \"$@\"\n#{shebang}"
     else
       @env_path ||= Gem::Installer::ENV_PATHS.find {|env_path| File.executable? env_path }

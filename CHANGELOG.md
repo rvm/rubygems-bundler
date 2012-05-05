@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.9.2
+date: 2012-05-05
+
+ - fix #16 fix --env-shebang
+
 ## 0.9.1
 date: 2012-05-05
 
