@@ -7,7 +7,7 @@ Gem.pre_install do |inst|
   RubygemsBundler::Wrapper.install
 end
 
-if Gem::Version.new(Gem::VERSION) < Gem::Version.new('1.8.25') then
+if Gem::Version.new(Gem::VERSION) < Gem::Version.new('2.0') then
   # Add custom_shebang support to rubygems
   require 'rubygems-bundler/rubygems_bundler_installer'
 end
