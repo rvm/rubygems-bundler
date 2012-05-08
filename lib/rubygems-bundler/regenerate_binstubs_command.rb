@@ -1,4 +1,6 @@
+require 'rubygems/command_manager'
 require 'rubygems/installer'
+require 'rubygems/version'
 
 class RegenerateBinstubsCommand < Gem::Command
   def initialize
@@ -26,6 +28,10 @@ class RegenerateBinstubsCommand < Gem::Command
   end
 
   def execute
+    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('2.0.0') then
+      # https://github.com/rubygems/rubygems/issues/326
+      puts "try also: gem pristine --binstubs"
+    end
     name = get_one_optional_argument || ''
     specs = installed_gems.select{|spec| spec.name =~ /^#{name}/i }
     specs.each do |spec|
@@ -54,3 +60,5 @@ class RegenerateBinstubsCommand < Gem::Command
     end
   end
 end
+
+Gem::CommandManager.instance.register_command :regenerate_binstubs

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0
+date: 2012-05-08
+
+ - lower the rubygems version that introduces custom_shebang
+ - change extensions code to an installer
+
 ## 0.9.2
 date: 2012-05-05
 

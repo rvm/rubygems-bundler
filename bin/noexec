@@ -1,3 +1,0 @@
-#!/usr/bin/env ruby
-
-print File.expand_path(File.expand_path("../../lib/rubygems-bundler/noexec.rb", __FILE__))
