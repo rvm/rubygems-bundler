@@ -1,4 +1,4 @@
-# rubygems-bundler && Noexec
+# rubygems-bundler && Noexec [![Build Status](https://secure.travis-ci.org/mpapis/rubygems-bundler.png?branch=1.0.0)](http://travis-ci.org/mpapis/rubygems-bundler)
 
 Let's stop using bundle exec, kthx.
 
