@@ -1,0 +1,22 @@
+language: ruby
+rvm:
+  - 1.8.7
+  - 1.9.2
+  - 1.9.3
+  - rbx-18mode
+  - rbx-19mode
+  - jruby-18mode
+  - jruby-19mode
+install: true
+before_script:
+  - rm -rf $rvm_path/gems/*/gems/rubygems-bundler*
+  - hash -r
+script: dtf --text test/dtf/*
+notifications:
+  irc:
+    channels:
+      - "irc.freenode.org#rubygems-bundler"
+  email:
+    recipients:
+      - mpapis@gmail.com
+    on_failure: change
