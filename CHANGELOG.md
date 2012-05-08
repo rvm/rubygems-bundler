@@ -1,10 +1,13 @@
 # Changelog
 
 ## 1.0.0
-date: 2012-05-08
+date: 2012-05-09
 
- - lower the rubygems version that introduces custom_shebang
- - change extensions code to an installer
+ - removed the need to modify ~/.gemrc
+ - change extensions code to an automatic installer
+ - added uninstaller
+ - removed old parts - there is only one way
+ - fix bug with rubygems < 1.5
 
 ## 0.9.2
 date: 2012-05-05
