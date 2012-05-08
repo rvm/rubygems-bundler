@@ -7,8 +7,10 @@ module RubygemsBundler
     def self.wrapper_name
       'ruby_noexec_wrapper'
     end
+    def self.bindir
+      Gem.respond_to?(:bindir,true) ? Gem.send(:bindir) : File.join(Gem.dir, 'bin')
+    end
     def self.destination
-      bindir = Gem.respond_to?(:bindir,true) ? Gem.send(:bindir) : File.join(Gem.dir, 'bin')
       File.expand_path( wrapper_name, bindir )
     end
     def self.install

@@ -38,6 +38,7 @@ class RegenerateBinstubsCommand < Gem::Command
   end
 
   def execute_no_wrapper
+    require 'rubygems-bundler/rubygems_bundler_installer'
     name = get_one_optional_argument || ''
     specs = installed_gems.select{|spec| spec.name =~ /^#{name}/i }
     specs.each do |spec|
