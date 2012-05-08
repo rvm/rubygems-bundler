@@ -1,4 +1,4 @@
-# Copy wrapper
+# install / uninstall wrapper
 require 'fileutils'
 require 'rubygems'
 
@@ -20,11 +20,11 @@ module RubygemsBundler
         else
           Gem.source_index.find_name("rubygems-bundler").last
         end
-      
+
       if rubygems_bundler_spec
         wrapper_path = File.expand_path( "bin/#{wrapper_name}", rubygems_bundler_spec.full_gem_path )
       end
-      
+
       if rubygems_bundler_spec && File.exist?(wrapper_path) && !File.exist?(destination)
         FileUtils.mkdir_p(bindir)
         FileUtils.cp(wrapper_path, destination)
