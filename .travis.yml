@@ -7,10 +7,10 @@ rvm:
   - rbx-19mode
   - jruby-18mode
   - jruby-19mode
-install: true
-before_script:
+before_install:
   - rm -rf $rvm_path/gems/*/gems/rubygems-bundler*
   - hash -r
+install: gem install dtf
 script: dtf --text test/dtf/*
 notifications:
   irc:
