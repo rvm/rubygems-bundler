@@ -3,7 +3,7 @@ require 'rubygems/version'
 # Set the custom_shebang if user did not set one
 Gem.pre_install do |inst|
   Gem.configuration[:custom_shebang] ||= '$env ruby_noexec_wrapper'
-  require 'rubygems-bundler/install_the_wrapper'
+  require 'rubygems-bundler/install_the_wrapper' or true
 end
 
 if Gem::Version.new(Gem::VERSION) < Gem::Version.new('1.8.25') then
