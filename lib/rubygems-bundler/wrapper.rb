@@ -32,7 +32,7 @@ module RubygemsBundler
       end
     end
     def self.uninstall
-      FileUtils.rm_f( destination )
+      FileUtils.rm_f(destination) if File.exist?(destination)
     end
   end
 end

@@ -33,6 +33,7 @@ class RegenerateBinstubsCommand < Gem::Command
       # https://github.com/rubygems/rubygems/issues/326
       puts "try also: gem pristine --binstubs"
     end
+    Gem.configuration[:custom_shebang] ||= '$env ruby_noexec_wrapper'
     RubygemsBundler::Wrapper.install
     execute_no_wrapper
   end
@@ -57,7 +58,6 @@ class RegenerateBinstubsCommand < Gem::Command
       end
     end
   end
-
 
   private
   def installed_gems
