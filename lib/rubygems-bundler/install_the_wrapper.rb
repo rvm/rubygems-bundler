@@ -18,7 +18,7 @@ if rubygems_bundler_spec
 end
 
 if rubygems_bundler_spec && File.exist?(wrapper_path) && !File.exist?(destination)
-  FileUtils.mkdir_p(bindir, :verbose => true)
+  FileUtils.mkdir_p(bindir)
   FileUtils.cp(wrapper_path, destination)
   File.chmod(0775, destination)
 end
