@@ -32,6 +32,7 @@ class RegenerateBinstubsCommand < Gem::Command
       # https://github.com/rubygems/rubygems/issues/326
       puts "try also: gem pristine --binstubs"
     end
+    require 'rubygems-bundler/install_the_wrapper' or true
     name = get_one_optional_argument || ''
     specs = installed_gems.select{|spec| spec.name =~ /^#{name}/i }
     specs.each do |spec|
