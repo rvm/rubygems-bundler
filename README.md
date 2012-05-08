@@ -57,7 +57,7 @@ Before uninstalling change a line in `~/.gemrc` to:
 
 and run
 
-    rubygems-bundler --uninstall
+    rubygems-bundler-uninstaller
 
 this will set all gems to `/usr/bin/env ruby` which is one of the safest choices (especially when using rvm).
 

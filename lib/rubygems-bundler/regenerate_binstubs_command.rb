@@ -1,6 +1,7 @@
 require 'rubygems/command_manager'
 require 'rubygems/installer'
 require 'rubygems/version'
+require 'rubygems-bundler/wrapper'
 
 class RegenerateBinstubsCommand < Gem::Command
   def initialize
@@ -32,7 +33,11 @@ class RegenerateBinstubsCommand < Gem::Command
       # https://github.com/rubygems/rubygems/issues/326
       puts "try also: gem pristine --binstubs"
     end
-    require 'rubygems-bundler/install_the_wrapper' or true
+    RubygemsBundler::Wrapper.install
+    execute_no_wrapper
+  end
+
+  def execute_no_wrapper
     name = get_one_optional_argument || ''
     specs = installed_gems.select{|spec| spec.name =~ /^#{name}/i }
     specs.each do |spec|
@@ -52,6 +57,7 @@ class RegenerateBinstubsCommand < Gem::Command
     end
   end
 
+
   private
   def installed_gems
     if Gem::VERSION > '1.8' then
@@ -61,5 +67,3 @@ class RegenerateBinstubsCommand < Gem::Command
     end
   end
 end
-
-Gem::CommandManager.instance.register_command :regenerate_binstubs

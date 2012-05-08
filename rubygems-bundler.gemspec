@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
 
   s.files       = `git ls-files`.split("\n")
   s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.executables = %w( rubygems-bundler-uninstaller )
 
   # Do we have to depend on those two ? Can we have two simple tasks doing the same ?
   s.add_development_dependency "rake"
