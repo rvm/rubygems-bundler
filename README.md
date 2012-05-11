@@ -22,16 +22,19 @@ add an include or exclude section. For example:
 
 ### .noexec.yaml
 
-    exclude: [rake]
-
+```yml
+exclude: [rake]
+```
 Or, 
 
-    include: [haml]
+```yml
+include: [haml]
+```
 
 ## Problems?
 
 Things not going the way you'd like? Try your command again with 
-NOEXEC_DEBUG=1 set and create a ticket. I'll fix it right away!
+`NOEXEC_DEBUG=1` set and create a ticket. I'll fix it right away!
 
 ### IRC support:
 
@@ -68,4 +71,4 @@ this will set all gems to `/usr/bin/env ruby` which is one of the safest choices
  - Yehuda Katz     : the initial patch code
  - Loren Segal     : shebang customization idea and explanations
  - Wayne E. Seguin : support in writing good code
- - Andre Arko      : claryfications how rubygems/bundler works
+ - André Arko      : clarifications how rubygems/bundler works
