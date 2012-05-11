@@ -26,16 +26,19 @@ add an include or exclude section. For example:
 
 ### .noexec.yaml
 
-    exclude: [rake]
-
+```yml
+exclude: [rake]
+```
 Or, 
 
-    include: [irb, ruby]
+```yml
+include: [irb, ruby]
+```
 
 ## Problems?
 
 Things not going the way you'd like? Try your command again with 
-NOEXEC_DEBUG=1 set and create a ticket. I'll fix it right away!
+`NOEXEC_DEBUG=1` set and create a ticket. I'll fix it right away!
 
 ### IRC support:
 
@@ -125,6 +128,6 @@ To make your choices persistent put them into `~/.bashrc` or `~/.rvmrc`.
  - Carl Lerche     : help with the noexec code
  - Yehuda Katz     : the initial patch code
  - Wayne E. Seguin : support in writing good code
- - Evan Phoenix    : support on rubygems internalls
- - Andre Arko      : claryfications how rubygems/bundler works
+ - Evan Phoenix    : support on rubygems internals
+ - André Arko      : clarifications how rubygems/bundler works
  - Loren Segal     : shebang customization idea and explanations
