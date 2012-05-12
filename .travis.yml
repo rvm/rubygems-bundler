@@ -9,6 +9,8 @@ before_install:
   - 'rm -rf $rvm_path/gems/*/{bin,gems}/rubygems-bundler-* $rvm_path/gems/*/bin/ruby_*_wrapper'
   - hash -r
 install: gem install dtf
+before_script:
+  - unset BUNDLE_GEMFILE
 script: dtf --text test/dtf/*
 notifications:
   irc:
