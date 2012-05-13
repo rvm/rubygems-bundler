@@ -1,5 +1,5 @@
 [![Build Status](https://secure.travis-ci.org/mpapis/rubygems-bundler.png?branch=1.0.0)](http://travis-ci.org/mpapis/rubygems-bundler)
-[![Dependency Status](https://gemnasium.com/mpapis/rubygems-bundler.jpg)](https://gemnasium.com/mpapis/rubygems-bundler)
+[![Dependency Status](https://gemnasium.com/mpapis/rubygems-bundler.png)](https://gemnasium.com/mpapis/rubygems-bundler)
 
 # rubygems-bundler && Noexec
 
