@@ -1,4 +1,5 @@
 [![Build Status](https://secure.travis-ci.org/mpapis/rubygems-bundler.png?branch=1.0.0)](http://travis-ci.org/mpapis/rubygems-bundler)
+[![Dependency Status](https://gemnasium.com/mpapis/rubygems-bundler.jpg)](https://gemnasium.com/mpapis/rubygems-bundler)
 
 # rubygems-bundler && Noexec
 
@@ -16,6 +17,8 @@ And you're done!
 
 ## Configuration
 
+### ~/.gemrc
+
 It's no more required to modify `~/.gemrc` anymore,
 just remove the old entry to be sure it works as expected.
 In case you need to use your own `custom_shebang`
@@ -23,13 +26,13 @@ you can define it in `~/.gemrc` to override the default:
 
     custom_shebang: $env <your_custom_shebang_program>
 
+### ./.noexec.yaml
+
 Though you can let noexec do it's own thing and rely on looking up your binary via your Gemfile, 
 you can also specify which binaries you want included or excluded. 
 Create a .noexec.yaml file along side any Gemfiles you want to use. 
 Then, to enable (or disable) the usage of your particular binary into your bundle, 
 add an include or exclude section. For example:
-
-### .noexec.yaml
 
 ```yml
 exclude: [rake]
