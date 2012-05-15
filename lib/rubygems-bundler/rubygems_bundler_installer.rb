@@ -24,11 +24,7 @@ module RubyGemsBundlerInstaller
 
   def self.shebang(inst, bin_file_name)
     # options were defined first in 1.5, we want to support back to 1.3.7
-    options_supported = inst.respond_to?('options') && inst.options
-    if (options_supported && inst.options[:env_shebang]) || inst.instance_variable_get(:@env_shebang)
-      ruby_name = Gem::ConfigMap[:ruby_install_name]
-    end
-
+    ruby_name = Gem::ConfigMap[:ruby_install_name] if inst.instance_variable_get(:@env_shebang)
     bindir = inst.bin_dir ? inst.bin_dir : Gem.bindir(inst.gem_home)
     path = File.join bindir, inst.formatted_program_filename(bin_file_name)
     first_line = File.open(path, "rb") {|file| file.gets}
