@@ -49,8 +49,8 @@ begin
 
     def setup
       log "Noexec"
-      return if %w(bundle rubygems-bundler-uninstaller).include?(File.basename($0))
-      return if ENV['BUNDLE_GEMFILE']
+      return if %w(bundle rubygems-bundler-uninstaller).include?(File.basename($0))   
+      return if ENV['BUNDLE_GEMFILE'] && ENV['BUNDLE_BIN_PATH'] && ENV['RUBYOPT']
       return if %w(0 skip).include?( ENV['NOEXEC'] )
       gemfile = File.join(CURRENT, "Gemfile")
       while true
