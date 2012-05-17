@@ -19,4 +19,4 @@ rubygems-bundler-uninstaller # match=/haml/
 head -n 1 $(which haml)   # match!=/env ruby_noexec_wrapper/
 which ruby_noexec_wrapper # status=1
 
-rm -f ${BUNDLE_GEMFILE} ${HAML_GIT_DIR}
+rm -rf ${BUNDLE_GEMFILE} ${HAML_GIT_DIR}
