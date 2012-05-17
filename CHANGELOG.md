@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1
+date: 2012-05-17
+
+ - fix #20, #22 improved detection of Bundler.setup
+ - fix #19, #25 no more failing for git gems
+
 ## 1.0.0
 date: 2012-05-09
 
