@@ -45,6 +45,7 @@ begin
       false
     ensure
       Bundler.reset!
+      ENV['BUNDLE_GEMFILE'] = nil
     end
 
     def setup
