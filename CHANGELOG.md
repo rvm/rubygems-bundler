@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.2
+date: 2012-05-18
+
+ - fix #24 disable loading plugin in case of disabled shared gems in bundler
+
 ## 1.0.1
 date: 2012-05-17
 
