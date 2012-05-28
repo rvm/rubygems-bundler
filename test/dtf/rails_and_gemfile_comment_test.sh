@@ -6,14 +6,14 @@ export PATH="${test_dir}/fake_gem_home/bin:$PATH"
 mkdir -p "${GEM_HOME}"
 printf "source :rubygems\n\ngem 'rails'\n" > "${test_dir}/Gemfile"
 
-rake build
-rake install        # match=/installed/
+yes | rake build
+yes | rake install        # match=/installed/
 gem install bundler # status=0
 
 : test
 builtin cd "${test_dir}"
 bundle install             # match=/Installing rails/
-NOEXEC=0 rails new app1
+yes | NOEXEC=0 rails new app1
 [[ -f app1/Gemfile ]]      # status=0
 [[ -f app1/Gemfile.lock ]] # status=0
 

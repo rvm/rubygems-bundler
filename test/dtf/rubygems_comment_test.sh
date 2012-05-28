@@ -1,6 +1,6 @@
 : init
-rake build
-rake install # match=/installed/
+yes | rake build
+yes | rake install # match=/installed/
 
 gem install haml          # match=/1 gem installed/
 
