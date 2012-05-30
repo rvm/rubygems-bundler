@@ -31,5 +31,7 @@ matrix:
   allow_failures:
     - rvm: jruby-18mode
     - rvm: jruby-19mode
+    - rvm: jruby-head
     - rvm: rbx-18mode
     - rvm: rbx-19mode
+    - rvm: ruby-head
