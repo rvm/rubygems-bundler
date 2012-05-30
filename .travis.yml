@@ -3,10 +3,14 @@ rvm:
   - 1.8.7
   - 1.9.2
   - 1.9.3
+  - ruby-head
   - jruby-18mode
   - jruby-19mode
+  - jruby-head
   - rbx-18mode
   - rbx-19mode
+jdk:
+  - openjdk7
 before_install:
   - 'rm -rf $rvm_path/gems/*/{bin,gems}/rubygems-bundler-* $rvm_path/gems/*/bin/ruby_*_wrapper'
   - hash -r
