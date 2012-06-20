@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.3
+date: 2012-06-20
+
+ -  fix #28, check Bundler.settings only when `in_bundle?`
+
 ## 1.0.2
 date: 2012-05-18
 
