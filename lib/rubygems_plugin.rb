@@ -9,7 +9,7 @@ called_version = __FILE__.sub(/^.*\/rubygems-bundler-([^\/]+)\/.*$/,'\1')
 
 # continue only if loaded and called versions all the same, and not shared gems disabled in bundler
 if rubygems_bundler_spec and rubygems_bundler_spec.version.to_s == called_version and
-  ( !defined?(Bundler) || ( defined?(Bundler) && !Bundler.settings[:disable_shared_gems]) )
+  ( !defined?(Bundler) || ( defined?(Bundler) && Bundler::SharedHelpers.in_bundle? && !Bundler.settings[:disable_shared_gems]) )
 
   require 'rubygems/version'
   require 'rubygems-bundler/wrapper'
