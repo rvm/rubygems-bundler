@@ -1,6 +1,7 @@
 msg = "\n\nOlder rubygems-bundler found, please uninstall it with:\n\n    "
 
-error_source = caller.find{|s| s=~/\/rubygems-bundler-/ }.split(/:/).first
+here = Regexp.new(__FILE__)
+error_source = caller.to_a.reject{|s| s=~ here }.find{|s| s=~/\/rubygems-bundler-/ }.first
 gem_source = File.expand_path("../../../..", error_source)
 gem_version = error_source.sub(/^.*\/rubygems-bundler-([^\/]+)\/.*$/,'\1')
 
