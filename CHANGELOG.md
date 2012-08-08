@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.4
+date: 2012-08-08
+
+ -  fix #30, fix detecting old version in warning
+
 ## 1.0.3
 date: 2012-06-20
 
