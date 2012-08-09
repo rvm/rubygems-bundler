@@ -17,7 +17,7 @@ before_install:
   - 'rm -rf $rvm_path/gems/*/{bin,gems}/rubygems-bundler-* $rvm_path/gems/*/bin/ruby_*_wrapper'
   - hash -r
   - gem install rake
-install: gem install tf
+install: gem install tf -v '>=4.1'
 before_script:
   - unset BUNDLE_GEMFILE
 script: tf --text test/dtf/*
