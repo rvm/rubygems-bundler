@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.5
+date: 2012-08-09
+
+ -  fixing dependencies dtf -> tf
+
 ## 1.0.4
 date: 2012-08-08
 
