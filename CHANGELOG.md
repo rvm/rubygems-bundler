@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.6
+date: 2012-08-10
+
+ -  fix #32, Gemfile should be a file
+
 ## 1.0.5
 date: 2012-08-09
 
