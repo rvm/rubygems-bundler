@@ -43,6 +43,9 @@ begin
         return true if %w(ruby irb).include?(bin) || spec.executables.include?(bin)
       end
       false
+    rescue Bundler::BundlerError => e
+      warn "Ignoring candidate #{gemfile}:\n#{e}" if DEBUG
+      false
     ensure
       Bundler.reset!
       ENV['BUNDLE_GEMFILE'] = nil
