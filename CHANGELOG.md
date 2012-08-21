@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.7
+date: 2012-08-21
+
+ - fix #27, fix #32, in case of bundler errors just ignore candidate gemfile
+
 ## 1.0.6
 date: 2012-08-10
 
