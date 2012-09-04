@@ -8,8 +8,8 @@ if %w(bundle rubygems-bundler-uninstaller).include?(File.basename($0))
 elsif ENV['BUNDLE_GEMFILE'] && ENV['BUNDLE_BIN_PATH'] && ENV['RUBYOPT']
   puts "Noexec - already in 'bundle exec'" if RubygemsBundler::DEBUG
 
-elsif %w(0 skip).include?( ENV['NOEXEC'] )
-  puts "Noexec - disabled with NOEXEC" if RubygemsBundler::DEBUG
+elsif %w(0 skip).include?( ENV['NOEXEC'] ) || ENV.key?('NOEXEC_DISABLE')
+  puts "Noexec - disabled with environment variable" if RubygemsBundler::DEBUG
 
 else
   begin
