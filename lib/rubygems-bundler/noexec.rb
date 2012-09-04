@@ -1,14 +1,19 @@
-DEBUG = ENV.key?('NOEXEC_DEBUG')
+module RubygemsBundler
+end
+RubygemsBundler::DEBUG = ENV.key?('NOEXEC_DEBUG')
 
 if %w(bundle rubygems-bundler-uninstaller).include?(File.basename($0))
-  puts "Noexec - skipped: #{File.basename($0)}" if DEBUG
+  puts "Noexec - skipped binary: #{File.basename($0)}" if RubygemsBundler::DEBUG
+
 elsif ENV['BUNDLE_GEMFILE'] && ENV['BUNDLE_BIN_PATH'] && ENV['RUBYOPT']
-  puts "Noexec - already in 'bundle exec'" if DEBUG
+  puts "Noexec - already in 'bundle exec'" if RubygemsBundler::DEBUG
+
 elsif %w(0 skip).include?( ENV['NOEXEC'] )
-  puts "Noexec - disabled with NOEXEC" if DEBUG
+  puts "Noexec - disabled with NOEXEC" if RubygemsBundler::DEBUG
+
 else
   begin
-    puts "Noexec - starting check" if DEBUG
+    puts "Noexec - starting check" if RubygemsBundler::DEBUG
     require "rubygems"
     require "bundler"
 
@@ -21,12 +26,12 @@ else
     end
 
     module Noexec
-      CURRENT = Dir.pwd
+      RubygemsBundler::CURRENT = Dir.pwd
 
       extend self
 
       def log(msg)
-        puts msg if DEBUG
+        puts msg if RubygemsBundler::DEBUG
       end
 
       def candidate?(gemfile, bin)
@@ -52,7 +57,7 @@ else
         end
         false
       rescue Bundler::BundlerError => e
-        warn "Ignoring candidate #{gemfile}:\n#{e}" if DEBUG
+        warn "Ignoring candidate #{gemfile}:\n#{e}" if RubygemsBundler::DEBUG
         false
       ensure
         Bundler.reset!
@@ -60,7 +65,7 @@ else
       end
 
       def setup
-        gemfile = ENV['BUNDLE_GEMFILE'] || File.join(CURRENT, "Gemfile")
+        gemfile = ENV['BUNDLE_GEMFILE'] || File.join(RubygemsBundler::CURRENT, "Gemfile")
         while true
           if File.file?(gemfile)
             log "Examining #{gemfile}"
@@ -81,6 +86,6 @@ else
 
     Noexec.setup
   rescue LoadError
-    warn "bundler not being used, unable to load" if DEBUG
+    warn "bundler not being used, unable to load" if RubygemsBundler::DEBUG
   end
 end
