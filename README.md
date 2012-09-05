@@ -30,46 +30,51 @@ you can define it in `~/.gemrc` to override the default:
 
 ### ./.noexec.yaml
 
-Though you can let noexec do it's own thing and rely on looking up your binary via your Gemfile, 
-you can also specify which binaries you want included or excluded. 
-Create a .noexec.yaml file along side any Gemfiles you want to use. 
-Then, to enable (or disable) the usage of your particular binary into your bundle, 
+Though you can let noexec do it's own thing and rely on looking up your binary via your Gemfile,
+you can also specify which binaries you want included or excluded.
+Create a .noexec.yaml file along side any Gemfiles you want to use.
+Then, to enable (or disable) the usage of your particular binary into your bundle,
 add an include or exclude section. For example:
 
 ```yml
 exclude: [rake]
 ```
-Or, 
+Or,
 
 ```yml
 include: [haml]
 ```
 
-### NOEXEC=skip
+### Disabling
 
-In case you need explicitly skip loading Bundler.setup, prefix your command with `NOEXEC=0`:
+In case you need explicitly skip loading `Bundler.setup`, prefix your command with `NOEXEC_DISABLE=1`:
+
+    NOEXEC_DISABLE=1
+
+The old method is still available and might kick in if your tools use `NOEXEC` environment variable:
 
     NOEXEC=0 rails new app
     NOEXEC=skip gist
 
-both `0` and `skip` will work, choose the one that sounds better for you.
+both `0` and `skip` will disable the gem, this method is deprecated and will be removed with 1.2.0.
 
 ## Problems?
 
-Things not going the way you'd like? Try your command again with 
+Things not going the way you'd like? Try your command again with
 `NOEXEC_DEBUG=1` set and create a ticket. I'll fix it right away!
 
 ### IRC support:
 
 [#rubygems-bundler on irc.freenode.net](http://webchat.freenode.net/?channels=#rubygems-bundler)
 
+If you do not get relatively fast an answer make sure to leave an email to secure an later answer.
 
 ## How does this work (ruby_noexec_wrapper)
 
 It modifies gem wrappers shebang to load `ruby_noexec_wrapper`.
 Then, when you run gem binaries, it takes a look at your working directory,
-and every directory above it until it can find a `Gemfile`. 
-If the executable you're running is present in your Gemfile, 
+and every directory above it until it can find a `Gemfile`.
+If the executable you're running is present in your Gemfile,
 it switches to using that `Gemfile` instead (via `Bundle.setup`).
 
 Rubygems and Bundler integration, makes executable wrappers
@@ -83,6 +88,12 @@ rubygems-bundler was merged with [noexec gem](https://github.com/joshbuddy/noexe
     gem uninstall rubygems-bundler
 
 this will set all gems to `/usr/bin/env ruby` which is one of the safest choices (especially when using rvm).
+
+In case of rvm additional steps will ensure this gem is removed and not installed again:
+
+    rvm get stable --without-gems=rubygems-bundler
+    rvm all-gemsets do gem uninstall --all --executables rubygems-bundler
+
 
 ## Authors
 
