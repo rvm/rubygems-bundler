@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # -*- encoding: utf-8 -*-
-$:.push File.expand_path("../lib", __FILE__)
-require "rubygems-bundler/version"
+
+Kernel.load File.expand_path("../lib/rubygems-bundler/version.rb", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "rubygems-bundler"

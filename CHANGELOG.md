@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0
+date: 2012-09-05
+
+ - move precheck to the beginning - fix `bundle _1.0.7_ ...`
+ - fix #33, do not pollute global namespace
+ - allow disabling with `NOEXEC_DISABLE=1` and deprecate `NOEXEC=0`
+
 ## 1.0.7
 date: 2012-08-21
 
