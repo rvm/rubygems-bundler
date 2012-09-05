@@ -9,6 +9,8 @@ elsif ENV['BUNDLE_GEMFILE'] && ENV['BUNDLE_BIN_PATH'] && ENV['RUBYOPT']
   puts "Noexec - already in 'bundle exec'" if RubygemsBundler::DEBUG
 
 elsif %w(0 skip).include?( ENV['NOEXEC'] ) || ENV.key?('NOEXEC_DISABLE')
+  #TODO: deprecated in 1.1.0, to be removed in 1.2.0 -- 2012.09.05
+  $stderr.puts "Warning, 'NOEXEC' environment variable is deprecated, switch to 'NOEXEC_DISABLE=1'." if ENV.key?('NOEXEC')
   puts "Noexec - disabled with environment variable" if RubygemsBundler::DEBUG
 
 else
