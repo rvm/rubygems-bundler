@@ -16,7 +16,9 @@ env:
 before_install:
   - 'rm -rf $rvm_path/gems/*/{bin,gems}/rubygems-bundler-* $rvm_path/gems/*/bin/ruby_*_wrapper'
   - hash -r
-  - gem install rake
+  - 'curl -L https://get.smf.sh | sh'
+  - 'export PATH=~/.sm/bin:$PATH'
+  - 'sm ext install gem mpapis/sm_gem'
 install: gem install tf -v '>=0.4.1'
 before_script:
   - unset BUNDLE_GEMFILE

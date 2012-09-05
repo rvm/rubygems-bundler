@@ -6,8 +6,7 @@ export PATH="${test_dir}/fake_gem_home/bin:$PATH"
 mkdir -p "${GEM_HOME}"
 printf "source :rubygems\n\ngem 'rails'\n" > "${test_dir}/Gemfile"
 
-yes | rake build
-yes | rake install        # match=/installed/
+sm gem install        # match=/installed/
 gem install bundler # status=0
 
 : test
