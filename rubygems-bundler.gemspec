@@ -17,7 +17,5 @@ Gem::Specification.new do |s|
   s.executables = %w( rubygems-bundler-uninstaller )
 
   s.add_development_dependency "tf"
-  # Do we have to depend on those two ? Can we have two simple tasks doing the same ?
-  s.add_development_dependency "rake"
-  s.add_development_dependency "bundler"
+  #s.add_development_dependency "smf-gem"
 end
