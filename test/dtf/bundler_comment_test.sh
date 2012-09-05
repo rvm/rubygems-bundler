@@ -2,7 +2,7 @@
 export BUNDLE_GEMFILE=${TMPDIR:-/tmp}/Gemfile
 printf "source :rubygems\n\ngem 'haml'\n" > ${BUNDLE_GEMFILE}
 
-sm gem install # match=/installed/
+yes | sm gem install # match=/installed/
 gem install bundler # status=0
 
 bundle install

@@ -1,7 +1,7 @@
 : init
 sm gem install # match=/installed/
 
-gem install haml          # match=/1 gem installed/
+yes | gem install haml          # match=/1 gem installed/
 
 head -n 1 $(which haml)   # match=/env ruby_noexec_wrapper/
 which ruby_noexec_wrapper # status=0
