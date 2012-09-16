@@ -4,15 +4,10 @@ rvm:
   - 1.9.2
   - 1.9.3
   - ruby-head
-  - jruby-18mode
-  - jruby-19mode
-  - jruby-head
   - rbx-18mode
   - rbx-19mode
 jdk:
   - openjdk7
-env:
-  - 'JRUBY_OPTS="-X-C --server -J-XX:+TieredCompilation"'
 before_install:
   - 'rm -rf $rvm_path/gems/*/{bin,gems}/rubygems-bundler-* $rvm_path/gems/*/bin/ruby_*_wrapper'
   - hash -r
@@ -32,10 +27,20 @@ notifications:
       - mpapis@gmail.com
     on_failure: change
 matrix:
+  include:
+    - rvm: jruby-18mode
+      env: 'JRUBY_OPTS="-X-C --server -J-XX:+TieredCompilation"'
+    - rvm: jruby-19mode
+      env: 'JRUBY_OPTS="-X-C --server -J-XX:+TieredCompilation"'
+    - rvm: jruby-head
+      env: 'JRUBY_OPTS="-X-C --server -J-XX:+TieredCompilation"'
   allow_failures:
     - rvm: jruby-18mode
+      env: 'JRUBY_OPTS="-X-C --server -J-XX:+TieredCompilation"'
     - rvm: jruby-19mode
+      env: 'JRUBY_OPTS="-X-C --server -J-XX:+TieredCompilation"'
     - rvm: jruby-head
+      env: 'JRUBY_OPTS="-X-C --server -J-XX:+TieredCompilation"'
     - rvm: rbx-18mode
     - rvm: rbx-19mode
     - rvm: ruby-head
