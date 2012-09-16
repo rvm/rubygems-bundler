@@ -11,9 +11,9 @@ bundle install
 
 : exclusion
 head -n 1 $(which heroku)    # match=/env ruby_noexec_wrapper/
-NOEXEC_DEBUG=1 heroku update # match=/Using .*/rubygems-bunelr_bundler-test/Gemfile/; match!=/Binary excluded by config/
+yes | NOEXEC_DEBUG=1 heroku update # match=/Using .*/rubygems-bunelr_bundler-test/Gemfile/; match!=/Binary excluded by config/
 printf "exclude:\n - heroku\n" > ${BUNDLE_GEMFILE%/*}/.noexec.yaml
-NOEXEC_DEBUG=1 heroku update # match!=/Using .*/rubygems-bunelr_bundler-test/Gemfile/; match=/Binary excluded by config/
+yes | NOEXEC_DEBUG=1 heroku update # match!=/Using .*/rubygems-bunelr_bundler-test/Gemfile/; match=/Binary excluded by config/
 
 : generated/removed
 head -n 1 $(which haml)      # match=/env ruby_noexec_wrapper/
