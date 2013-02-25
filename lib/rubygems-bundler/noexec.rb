@@ -1,3 +1,5 @@
+require "yaml"
+
 module RubygemsBundler
 end
 RubygemsBundler::DEBUG = ENV.key?('NOEXEC_DEBUG')
