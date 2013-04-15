@@ -60,7 +60,7 @@ else
           return true if %w(ruby irb).include?(bin) || spec.executables.include?(bin)
         end
         false
-      rescue Bundler::BundlerError => e
+      rescue Bundler::BundlerError, Bundler::GemfileError => e
         warn "Ignoring candidate #{gemfile}:\n#{e}" if RubygemsBundler::DEBUG
         false
       ensure
