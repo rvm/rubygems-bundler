@@ -23,8 +23,10 @@ else
 
     module Bundler
       class << self
-        def reset!
+        def reset!(rubygems_specs)
           @load = nil
+          ENV.replace(ORIGINAL_ENV)
+          Bundler.rubygems.replace_entrypoints(rubygems_specs)
         end
       end
     end
@@ -39,6 +41,7 @@ else
       end
 
       def candidate?(gemfile, bin)
+        rubygems_specs = Gem::Specification._all
         config_file = File.expand_path('../.noexec.yaml', gemfile)
         log "Considering #{config_file.inspect}"
         if File.exist?(config_file)
@@ -64,8 +67,7 @@ else
         warn "Ignoring candidate #{gemfile}:\n#{e}" if RubygemsBundler::DEBUG
         false
       ensure
-        Bundler.reset!
-        ENV['BUNDLE_GEMFILE'] = nil
+        Bundler.reset!(rubygems_specs)
       end
 
       def setup
