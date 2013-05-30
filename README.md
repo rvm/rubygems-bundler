@@ -20,7 +20,7 @@ And you're done!
 ## Configuration
 
 ### ~/.gemrc
-  
+
 You no longer need to modify `~/.gemrc`,
 just remove the old entry to be sure it works as expected.
 If you need to use your own `custom_shebang`,
@@ -45,11 +45,27 @@ Or,
 include: [haml]
 ```
 
-### Disabling
+### Disabling executables
+
+In case you know certain binaries should not use `bundler` you can define a list of this binaries:
+
+    export NOEXEC_EXCLUDE="gist bluepill"
+
+Put it into `~/.bashrc` or other shell initialization file to make it persistent.
+
+### Disabling any commands
 
 In case you need explicitly skip loading `Bundler.setup`, prefix your command with `NOEXEC_DISABLE=1`:
 
-    NOEXEC_DISABLE=1
+    NOEXEC_DISABLE=1 rails new app
+
+To disable for whole shell session:
+
+    export NOEXEC_DISABLE=1
+
+And to restore automatic behavior:
+
+    unset NOEXEC_DISABLE
 
 The old method is still available and might kick in if your tools use `NOEXEC` environment variable:
 
@@ -67,7 +83,7 @@ Things not going the way you'd like? Try your command again with
 
 [#rubygems-bundler on irc.freenode.net](http://webchat.freenode.net/?channels=#rubygems-bundler)
 
-If you do not get an answer relatively quickly, 
+If you do not get an answer relatively quickly,
 be sure to leave your email address so someone can get back to you later.
 
 ## How does this work (ruby_noexec_wrapper)
