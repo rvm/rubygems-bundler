@@ -4,6 +4,7 @@
 date: 2013-05-30
 
  - add a global variable to ignore executables, fix #47
+ - fix loading specs to restore in older rubygems, update #41
 
 ## 1.2.0.rc1
 date: 2013-04-15

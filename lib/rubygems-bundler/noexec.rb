@@ -44,7 +44,7 @@ else
       end
 
       def candidate?(gemfile, bin)
-        rubygems_specs = Gem::Specification._all
+        rubygems_specs = Bundler.rubygems.all_specs
         config_file = File.expand_path('../.noexec.yaml', gemfile)
         log "Considering #{config_file.inspect}"
         if File.exist?(config_file)
