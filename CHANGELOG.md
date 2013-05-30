@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.0.rc3
+date: 2013-05-30
+
+ - fix saving / restoring gem specifications, update #41
+
 ## 1.2.0.rc2
 date: 2013-05-30
 

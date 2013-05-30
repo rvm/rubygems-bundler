@@ -25,11 +25,37 @@ else
     require "bundler"
 
     module Bundler
+      class RubygemsIntegration
+        class Legacy
+          def plain_specs
+            Gem.source_index.gems
+          end
+          def plain_specs=(specs)
+            Gem.source_index.instance_variable_set(:@gems, specs)
+          end
+        end
+        class Modern
+          def plain_specs
+            Gem::Specification._all
+          end
+          def plain_specs=(specs)
+            Gem::Specification.all = specs
+          end
+        end
+        class Future
+          def plain_specs
+            Gem::Specification._all
+          end
+          def plain_specs=(specs)
+            Gem::Specification.all = specs
+          end
+        end
+      end
       class << self
         def reset!(rubygems_specs)
           @load = nil
           ENV.replace(ORIGINAL_ENV)
-          Bundler.rubygems.replace_entrypoints(rubygems_specs)
+          Bundler.rubygems.plain_specs = rubygems_specs
         end
       end
     end
@@ -44,7 +70,7 @@ else
       end
 
       def candidate?(gemfile, bin)
-        rubygems_specs = Bundler.rubygems.all_specs
+        rubygems_specs = Bundler.rubygems.plain_specs
         config_file = File.expand_path('../.noexec.yaml', gemfile)
         log "Considering #{config_file.inspect}"
         if File.exist?(config_file)
