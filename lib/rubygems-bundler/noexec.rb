@@ -7,6 +7,9 @@ RubygemsBundler::DEBUG = ENV.key?('NOEXEC_DEBUG')
 if %w(bundle rubygems-bundler-uninstaller).include?(File.basename($0))
   puts "Noexec - skipped binary: #{File.basename($0)}" if RubygemsBundler::DEBUG
 
+elsif ENV['NOEXEC_EXCLUDE'] && ENV['NOEXEC_EXCLUDE'].split(/ /).include?(File.basename($0))
+  puts "Noexec - ENV skipped binary: #{File.basename($0)}" if RubygemsBundler::DEBUG
+
 elsif ENV['BUNDLE_GEMFILE'] && ENV['BUNDLE_BIN_PATH'] && ENV['RUBYOPT']
   puts "Noexec - already in 'bundle exec'" if RubygemsBundler::DEBUG
 

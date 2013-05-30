@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.0.rc2
+date: 2013-05-30
+
+ - add a global variable to ignore executables, fix #47
+
 ## 1.2.0.rc1
 date: 2013-04-15
 
