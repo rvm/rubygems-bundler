@@ -22,43 +22,7 @@ else
   begin
     puts "Noexec - starting check" if RubygemsBundler::DEBUG
     require "rubygems"
-    require "bundler"
-
-    module Bundler
-      class RubygemsIntegration
-        class Legacy
-          def plain_specs
-            Gem.source_index.gems
-          end
-          def plain_specs=(specs)
-            Gem.source_index.instance_variable_set(:@gems, specs)
-          end
-        end
-        class Modern
-          def plain_specs
-            Gem::Specification._all
-          end
-          def plain_specs=(specs)
-            Gem::Specification.all = specs
-          end
-        end
-        class Future
-          def plain_specs
-            Gem::Specification._all
-          end
-          def plain_specs=(specs)
-            Gem::Specification.all = specs
-          end
-        end
-      end
-      class << self
-        def reset!(rubygems_specs)
-          @load = nil
-          ENV.replace(ORIGINAL_ENV)
-          Bundler.rubygems.plain_specs = rubygems_specs
-        end
-      end
-    end
+    require "bundler-unload"
 
     module Noexec
       RubygemsBundler::CURRENT = Dir.pwd
@@ -70,7 +34,6 @@ else
       end
 
       def candidate?(gemfile, bin)
-        rubygems_specs = Bundler.rubygems.plain_specs
         config_file = File.expand_path('../.noexec.yaml', gemfile)
         log "Considering #{config_file.inspect}"
         if File.exist?(config_file)
@@ -87,16 +50,16 @@ else
           log "Config based matching didn't find it, resorting to Gemfile lookup"
         end
         ENV['BUNDLE_GEMFILE'] = gemfile
-        Bundler.load.specs.each do |spec|
-          next if spec.name == 'bundler'
-          return true if %w(ruby irb).include?(bin) || spec.executables.include?(bin)
+        Bundler.with_bundle do
+          load.specs.each do |spec|
+            next if spec.name == 'bundler'
+            return true if %w(ruby irb).include?(bin) || spec.executables.include?(bin)
+          end
         end
         false
       rescue Bundler::BundlerError, Bundler::GemfileError => e
         warn "Ignoring candidate #{gemfile}:\n#{e}" if RubygemsBundler::DEBUG
         false
-      ensure
-        Bundler.reset!(rubygems_specs)
       end
 
       def setup
