@@ -50,8 +50,8 @@ else
           log "Config based matching didn't find it, resorting to Gemfile lookup"
         end
         ENV['BUNDLE_GEMFILE'] = gemfile
-        Bundler.with_bundle do
-          load.specs.each do |spec|
+        Bundler.with_bundle do |bundler|
+          bundler.specs.each do |spec|
             next if spec.name == 'bundler'
             return true if %w(ruby irb).include?(bin) || spec.executables.include?(bin)
           end
