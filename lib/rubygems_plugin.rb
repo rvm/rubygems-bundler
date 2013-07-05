@@ -1,14 +1,22 @@
-rubygems_bundler_spec =
-  if Gem::Specification.respond_to?(:find_by_name)
-    Gem::Specification.find_by_name("rubygems-bundler")
-  else
-    Gem.source_index.find_name("rubygems-bundler").last
+module RubygemsBundler
+  def self.spec_version
+    rubygems_bundler_spec =
+      if Gem::Specification.respond_to?(:find_by_name)
+        Gem::Specification.find_by_name("rubygems-bundler")
+      else
+        Gem.source_index.find_name("rubygems-bundler").last
+      end
+    rubygems_bundler_spec ? rubygems_bundler_spec.version.to_s : nil
+  rescue Gem::LoadError
+    nil
   end
+end
 
-called_version = __FILE__.sub(/^.*\/rubygems-bundler-([^\/]+)\/.*$/,'\1')
+called_path, called_version = __FILE__.match(/^(.*\/rubygems-bundler-([^\/]+)\/lib).*$/)[1..2]
 
-# continue only if loaded and called versions all the same, and not shared gems disabled in bundler
-if rubygems_bundler_spec and rubygems_bundler_spec.version.to_s == called_version and
+# continue only if loaded ($: or gem) and called versions is the same and not shared gems disabled in bundler
+if
+  ( $:.include?(called_path) || RubygemsBundler.spec_version == called_version ) and
   ( !defined?(Bundler) || ( defined?(Bundler) && Bundler::SharedHelpers.in_bundle? && !Bundler.settings[:disable_shared_gems]) )
 
   require 'rubygems/version'
