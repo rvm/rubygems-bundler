@@ -1,12 +1,12 @@
 module RubygemsBundler
   def self.spec_version
-    rubygems_bundler_spec =
+    @rubygems_bundler_spec ||=
       if Gem::Specification.respond_to?(:find_by_name)
         Gem::Specification.find_by_name("rubygems-bundler")
       else
         Gem.source_index.find_name("rubygems-bundler").last
       end
-    rubygems_bundler_spec ? rubygems_bundler_spec.version.to_s : nil
+    @rubygems_bundler_spec ? @rubygems_bundler_spec.version.to_s : nil
   rescue Gem::LoadError
     nil
   end
@@ -36,7 +36,7 @@ if
   require 'rubygems-bundler/regenerate_binstubs_command'
   Gem::CommandManager.instance.register_command :regenerate_binstubs
 elsif ENV.key?('NOEXEC_DEBUG')
-  msg = "Older rubygems-bundler found, loaded: #{rubygems_bundler_spec.version}, called: #{called_version}, you can uninstall it with:\n\n    "
+  msg = "Older rubygems-bundler found, loaded: #{RubygemsBundler.spec_version}, called: #{called_version}, you can uninstall it with:\n\n    "
 
   error_source = __FILE__
   gem_source = File.expand_path("../../../..", error_source)
