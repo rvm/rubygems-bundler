@@ -14,9 +14,9 @@ Gem::Specification.new do |s|
 
   s.files       = `git ls-files`.split("\n")
   s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables = %w( rubygems-bundler-uninstaller )
 
   s.add_dependency "bundler-unload", ">=1.0.1"
+  s.add_dependency "executable-hooks", ">=1.1.0"
   s.add_development_dependency "tf"
   #s.add_development_dependency "smf-gem"
 end

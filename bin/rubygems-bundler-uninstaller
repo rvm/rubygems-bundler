@@ -1,5 +1,0 @@
-#!/usr/bin/env ruby
-
-require 'rubygems-bundler/uninstaller'
-
-RubygemsBundler.uninstall
