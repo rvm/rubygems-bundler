@@ -20,7 +20,7 @@ head -n 1 $(which haml)      # match=/env ruby_executable_hooks/
 which ruby_executable_hooks    # status=0
 
 gem list                     # match=/haml/
-rubygems-bundler-uninstaller # match=/haml/
+executable-hooks-uninstaller # match=/haml/
 
 head -n 1 $(which haml)      # match!=/env ruby_executable_hooks/
 which ruby_executable_hooks    # status=1
