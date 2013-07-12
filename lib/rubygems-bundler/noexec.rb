@@ -33,7 +33,7 @@ else
         puts msg if RubygemsBundler::DEBUG
       end
 
-      def candidate?(gemfile, bin)
+      def candidate?(gemfile, bin, rubygems_spec)
         config_file = File.expand_path('../.noexec.yaml', gemfile)
         log "Considering #{config_file.inspect}"
         if File.exist?(config_file)
@@ -49,12 +49,21 @@ else
           end
           log "Config based matching didn't find it, resorting to Gemfile lookup"
         end
+        return true if %w(ruby irb).include?(bin)
         ENV['BUNDLE_GEMFILE'] = gemfile
-        Bundler.with_bundle do |bundler|
-          bundler.specs.each do |spec|
-            next if spec.name == 'bundler'
-            return true if %w(ruby irb).include?(bin) || spec.executables.include?(bin)
+        Bundler.with_bundle do |runtime|
+          if rubygems_spec
+            missing_spec = runtime.
+              instance_variable_get(:@definition).
+              missing_specs.
+              detect{|spec| spec.name == rubygems_spec.name}
+            if missing_spec
+              puts "\e[31mCould not find proper version of #{missing_spec.to_s} in any of the sources\e[0m"
+              puts "\e[33mRun `bundle install` to install missing gems.\e[0m"
+              exit Bundler::GemNotFound.new.status_code
+            end
           end
+          return true if runtime.specs.detect{ |spec| spec.executables.include?(bin) }
         end
         false
       rescue Bundler::BundlerError, Bundler::GemfileError => e
@@ -62,12 +71,13 @@ else
         false
       end
 
-      def setup
+      def setup(bin)
         gemfile = ENV['BUNDLE_GEMFILE'] || File.join(RubygemsBundler::CURRENT, "Gemfile")
+        rubygems_spec = Bundler.rubygems.plain_specs.detect{|spec| spec.executables.include?(bin) }
         while true
           if File.file?(gemfile)
             log "Examining #{gemfile}"
-            if Noexec.candidate?(gemfile, File.basename($0))
+            if Noexec.candidate?(gemfile, bin, rubygems_spec)
               log "Using #{gemfile}"
               ENV['BUNDLE_GEMFILE'] = gemfile
               Bundler.setup
@@ -82,7 +92,7 @@ else
       end
     end
 
-    Noexec.setup
+    Noexec.setup(File.basename($0))
   rescue LoadError
     warn "bundler not being used, unable to load" if RubygemsBundler::DEBUG
   end
