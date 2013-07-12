@@ -1,19 +1,30 @@
 # Changelog
 
-## 1.2.0.rc3
-date: 2013-05-30
+## 1.3.0.rc3
+date: 2013-07-13
 
+ - Add license to gemspec, merge #51, fix #50
+ - convert `noexec` to a class and move unscoped code to it
+ - fail if the Gemfile version of gem can not be found, fix #37
+ - extracted hooking into rubygems to executable-hooks gem, fix #44
+
+## 1.2.2
+date: 2013-07-10
+
+ - remove references to rubygems_bundler_spec, update #49
+
+## 1.2.1
+date: 2013-07-05
+
+ - improved checking if rubygems-bundler is loaded, fix #49
+
+## 1.2.0
+date: 2013-06-02
+
+ - extracted bundler unloading to `bundler-unload` gem
  - fix saving / restoring gem specifications, update #41
-
-## 1.2.0.rc2
-date: 2013-05-30
-
  - add a global variable to ignore executables, fix #47
  - fix loading specs to restore in older rubygems, update #41
-
-## 1.2.0.rc1
-date: 2013-04-15
-
  - do not break on broken Gemfile, fix #41
 
 ## 1.1.0
