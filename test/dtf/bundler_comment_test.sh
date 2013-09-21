@@ -8,7 +8,7 @@ yes | sm gem install         # match=/installed/
 gem regenerate_binstubs      # status=0
 gem install bundler          # status=0
 
-bundle install               # status=0
+env DEBUG_RESOLVER=1 DEBUG=1 bundle install # status=0
 
 : exclusion
 head -n 1 "$(which haml)"     # match=/env ruby_executable_hooks/
