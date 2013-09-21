@@ -1,7 +1,7 @@
 : init
 export BUNDLE_GEMFILE=${TMPDIR:-/tmp}/rubygems-bunelr_bundler-test/Gemfile
 mkdir -p ${BUNDLE_GEMFILE%/*} # status=0
-printf "source 'https://rubygems.org'\n\ngem 'haml'\ngem 'jruby-openssl', :require => 'openssl', :platforms => :jruby\n" > ${BUNDLE_GEMFILE}
+printf "source 'https://rubygems.org'\n\ngem 'haml'\ngem 'jruby-openssl', :require => 'openssl', :platforms => :jruby\n" | tee ${BUNDLE_GEMFILE}
 
 yes | sm gem install         # match=/installed/
 gem regenerate_binstubs      # status=0
