@@ -1,7 +1,7 @@
 # Changelog
 
-## 1.3.0.rc3
-date: 2013-07-13
+## 1.3.0
+date: 2013-09-21
 
  - Add license to gemspec, merge #51, fix #50
  - convert `noexec` to a class and move unscoped code to it
