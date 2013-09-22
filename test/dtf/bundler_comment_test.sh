@@ -1,4 +1,5 @@
 : init
+export NOEXEC_DEBUG=1
 export BUNDLE_GEMFILE=${TMPDIR:-/tmp}/rubygems-bunelr_bundler-test/Gemfile
 rm -rf ${BUNDLE_GEMFILE%/*}
 mkdir -p ${BUNDLE_GEMFILE%/*} # status=0
@@ -12,9 +13,9 @@ bundle install # status=0
 
 : exclusion
 head -n 1 "$(which haml)"     # match=/env ruby_executable_hooks/
-NOEXEC_DEBUG=1 haml --version # match=/Using .*/rubygems-bunelr_bundler-test/Gemfile/; match!=/Binary excluded by config/
+haml --version # match=/Using .*/rubygems-bunelr_bundler-test/Gemfile/; match!=/Binary excluded by config/
 printf "exclude:\n - haml\n" > ${BUNDLE_GEMFILE%/*}/.noexec.yaml
-NOEXEC_DEBUG=1 haml --version # match!=/Using .*/rubygems-bunelr_bundler-test/Gemfile/; match=/Binary excluded by config/
+haml --version # match!=/Using .*/rubygems-bunelr_bundler-test/Gemfile/; match=/Binary excluded by config/
 
 : generated/removed
 head -n 1 "$(which haml)"    # match=/env ruby_executable_hooks/
