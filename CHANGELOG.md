@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.3.2
+date: 2013-09-22
+
+ - fix detecting program name after fixing it, update mpapis/executable-hooks#5, update mpapis/bundler-unload#2
+
+## 1.3.1
+date: 2013-09-22
+
+ - bump required versions of dependencies
+
 ## 1.3.0
 date: 2013-09-21
 
