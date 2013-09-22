@@ -8,7 +8,8 @@ class Noexec
   attr_reader :bin
 
   def initialize(bin)
-    @bin = bin
+    bin = bin.split(/ /)
+    @bin = File.basename(bin[1]||bin[0])
   end
 
   def log(msg)
@@ -103,4 +104,4 @@ class Noexec
 
 end
 
-Noexec.new(File.basename($0)).check
+Noexec.new($0).check
