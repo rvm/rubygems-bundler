@@ -8,8 +8,10 @@ class Noexec
   attr_reader :bin
 
   def initialize(bin)
+    log "Bin used: #{bin}"
     bin = bin.split(/ /)
     @bin = File.basename(bin[1]||bin[0])
+    log "Bin calculated: #{@bin}"
   end
 
   def log(msg)
