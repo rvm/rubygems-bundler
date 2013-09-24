@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.3
+date: 2013-09-24
+
+ - bump required versions of dependencies
+ - improved logging in debug mode
+
 ## 1.3.2
 date: 2013-09-22
 
