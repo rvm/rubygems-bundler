@@ -1,5 +1,4 @@
 require "rubygems"
-require "yaml"
 
 class Noexec
   DEBUG   = ENV.key?('NOEXEC_DEBUG')
@@ -23,6 +22,7 @@ class Noexec
     log "Considering #{config_file.inspect}"
     if File.exist?(config_file)
       log "Using config file at #{config_file}"
+      require "yaml"
       config = YAML::load_file(config_file)
       raise "You cannot have both an include and exclude section in your #{config_file.inspect}" unless config['include'].nil? ^ config['exclude'].nil?
       if config['include'] && config['include'].include?(bin)
