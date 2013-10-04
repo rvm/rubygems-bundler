@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.4
+date: 2013-10-04
+
+ - move loading yaml when it is needed, fix #53
+
 ## 1.3.3
 date: 2013-09-24
 
