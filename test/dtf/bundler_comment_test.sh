@@ -13,9 +13,9 @@ bundle install # status=0
 
 : exclusion
 head -n 1 "$(which haml)"     # match=/env ruby_executable_hooks/
-haml --version # match=/Using .*/rubygems-bunelr_bundler-test/Gemfile/; match!=/Binary excluded by config/
+haml --version # match=/Keeping .*/rubygems-bunelr_bundler-test/Gemfile loaded/; match!=/Binary excluded by config/
 printf "exclude:\n - haml\n" > ${BUNDLE_GEMFILE%/*}/.noexec.yaml
-haml --version # match!=/Using .*/rubygems-bunelr_bundler-test/Gemfile/; match=/Binary excluded by config/
+haml --version # match!=/Keeping .*/rubygems-bunelr_bundler-test/Gemfile loaded/; match=/Binary excluded by config/
 
 : generated/removed
 head -n 1 "$(which haml)"    # match=/env ruby_executable_hooks/
