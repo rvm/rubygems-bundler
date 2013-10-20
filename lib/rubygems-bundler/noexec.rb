@@ -1,7 +1,7 @@
 require "rubygems"
 
 class Noexec
-  DEBUG   = ENV.key?('NOEXEC_DEBUG')
+  DEBUG   = ENV['NOEXEC_DEBUG']
   CURRENT = Dir.pwd
 
   attr_reader :bin, :gemfile
@@ -15,6 +15,10 @@ class Noexec
 
   def log(msg)
     puts msg if Noexec::DEBUG
+  end
+
+  def log2(msg)
+    puts msg if Noexec::DEBUG == "2"
   end
 
   def candidate?
@@ -49,6 +53,7 @@ class Noexec
           exit Bundler::GemNotFound.new.status_code
         end
       end
+      log2 "runtime specs: #{runtime.specs.map{|g| "#{g.name}-#{g.version}"}*" "}"
       return true if runtime.specs.detect{ |spec| spec.executables.include?(bin) }
     end
     false
@@ -57,8 +62,12 @@ class Noexec
     false
   end
 
+  def rubygems_specs
+    @rubygems_specs ||= Bundler.rubygems.plain_specs
+  end
+
   def rubygems_spec
-    @rubygems_spec ||= Bundler.rubygems.plain_specs.detect{|spec| spec.executables.include?(bin) }
+    @rubygems_spec ||= rubygems_specs.detect{|spec| spec.executables.include?(bin) }
   end
 
   def load_bundler
@@ -71,7 +80,8 @@ class Noexec
     puts "Noexec - starting check" if Noexec::DEBUG
     require "bundler-unload"
 
-    rubygems_spec # calculate it before entering bundler
+    rubygems_specs # calculate it before entering bundler
+    log2 "rubygems_specs: #{rubygems_specs.map{|g| "#{g.name}-#{g.version}"}*" "}"
 
     @gemfile = ENV['BUNDLE_GEMFILE'] || File.join(Noexec::CURRENT, "Gemfile")
 
