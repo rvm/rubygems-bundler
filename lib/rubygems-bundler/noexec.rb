@@ -19,7 +19,6 @@ class Noexec
 
   def candidate?(gemfile)
     config_file = File.expand_path('../.noexec.yaml', gemfile)
-    log "Considering #{config_file.inspect}"
     if File.exist?(config_file)
       log "Using config file at #{config_file}"
       require "yaml"
