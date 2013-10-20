@@ -41,7 +41,7 @@ class Noexec
       log "Config based matching didn't find it, resorting to Gemfile lookup"
     end
     ENV['BUNDLE_GEMFILE'] = gemfile
-    Bundler.with_bundle do |runtime|
+    runtime = Bundler.load
       if rubygems_spec
         missing_spec = runtime.
           instance_variable_get(:@definition).
@@ -55,7 +55,7 @@ class Noexec
       end
       log2 "runtime specs: #{runtime.specs.map{|g| "#{g.name}-#{g.version}"}*" "}"
       return true if runtime.specs.detect{ |spec| spec.executables.include?(bin) }
-    end
+    Bundler.unload!(rubygems_specs)
     false
   rescue Bundler::BundlerError, Bundler::GemfileError => e
     warn "Ignoring candidate #{gemfile}:\n#{e}" if Noexec::DEBUG
@@ -70,12 +70,6 @@ class Noexec
     @rubygems_spec ||= rubygems_specs.detect{|spec| spec.executables.include?(bin) }
   end
 
-  def load_bundler
-    log "Using #{gemfile}"
-    ENV['BUNDLE_GEMFILE'] = gemfile
-    Bundler.setup
-  end
-
   def setup
     puts "Noexec - starting check" if Noexec::DEBUG
     require "bundler-unload"
@@ -87,7 +81,8 @@ class Noexec
 
     while true
       if File.file?(gemfile) && candidate?
-        return load_bundler
+        log "Keeping #{gemfile} loaded"
+        return
       end
       new_gemfile = File.expand_path("../../Gemfile", gemfile)
       break if new_gemfile == gemfile
