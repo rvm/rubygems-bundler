@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.0
+date: 2013-10-20
+
+ - skip unload! / load round trip when binary found in Gemfile, avoids mpapis/bundler-unload#3
+
 ## 1.3.4
 date: 2013-10-04
 
