@@ -4,7 +4,7 @@ class Noexec
   DEBUG   = ENV.key?('NOEXEC_DEBUG')
   CURRENT = Dir.pwd
 
-  attr_reader :bin
+  attr_reader :bin, :gemfile
 
   def initialize(bin)
     log "Bin used: #{bin}"
@@ -17,13 +17,16 @@ class Noexec
     puts msg if Noexec::DEBUG
   end
 
-  def candidate?(gemfile)
+  def candidate?
+    log "Examining #{gemfile}"
     config_file = File.expand_path('../.noexec.yaml', gemfile)
     if File.exist?(config_file)
       log "Using config file at #{config_file}"
       require "yaml"
       config = YAML::load_file(config_file)
-      raise "You cannot have both an include and exclude section in your #{config_file.inspect}" unless config['include'].nil? ^ config['exclude'].nil?
+      unless config['include'].nil? ^ config['exclude'].nil?
+        raise "You cannot have both an include and exclude section in your #{config_file.inspect}"
+      end
       if config['include'] && config['include'].include?(bin)
         log "Binary included by config"
         return true
@@ -33,7 +36,6 @@ class Noexec
       end
       log "Config based matching didn't find it, resorting to Gemfile lookup"
     end
-    return true if %w(ruby irb).include?(bin)
     ENV['BUNDLE_GEMFILE'] = gemfile
     Bundler.with_bundle do |runtime|
       if rubygems_spec
@@ -59,24 +61,27 @@ class Noexec
     @rubygems_spec ||= Bundler.rubygems.plain_specs.detect{|spec| spec.executables.include?(bin) }
   end
 
+  def load_bundler
+    log "Using #{gemfile}"
+    ENV['BUNDLE_GEMFILE'] = gemfile
+    Bundler.setup
+  end
+
   def setup
     puts "Noexec - starting check" if Noexec::DEBUG
     require "bundler-unload"
 
-    gemfile = ENV['BUNDLE_GEMFILE'] || File.join(Noexec::CURRENT, "Gemfile")
+    rubygems_spec # calculate it before entering bundler
+
+    @gemfile = ENV['BUNDLE_GEMFILE'] || File.join(Noexec::CURRENT, "Gemfile")
+
     while true
-      if File.file?(gemfile)
-        log "Examining #{gemfile}"
-        if candidate?(gemfile)
-          log "Using #{gemfile}"
-          ENV['BUNDLE_GEMFILE'] = gemfile
-          Bundler.setup
-          return
-        end
+      if File.file?(gemfile) && candidate?
+        return load_bundler
       end
       new_gemfile = File.expand_path("../../Gemfile", gemfile)
       break if new_gemfile == gemfile
-      gemfile = new_gemfile
+      @gemfile = new_gemfile
     end
     log "No valid Gemfile found, moving on"
   rescue LoadError
@@ -100,6 +105,7 @@ class Noexec
 
     else
       setup
+
     end
   end
 
