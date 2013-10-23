@@ -40,7 +40,6 @@ class Noexec
       end
       log "Config based matching didn't find it, resorting to Gemfile lookup"
     end
-    ENV['BUNDLE_GEMFILE'] = gemfile
     runtime = Bundler.load
     log2 "runtime specs: #{runtime.specs.map{|g| "#{g.name}-#{g.version}"}*" "}"
     if rubygems_spec # that single gem
@@ -78,8 +77,10 @@ class Noexec
     @gemfile = ENV['BUNDLE_GEMFILE'] || File.join(Noexec::CURRENT, "Gemfile")
 
     while true
+      ENV['BUNDLE_GEMFILE'] = gemfile
       if File.file?(gemfile) && candidate?
         log "Keeping #{gemfile} loaded"
+        Bundler.setup
         return
       end
       new_gemfile = File.expand_path("../../Gemfile", gemfile)
