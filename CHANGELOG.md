@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.1
+date: 2013-10-23
+
+ - restore loading Bundler.setup for git gems to work, update mpapis/bundler-unload#3
+
 ## 1.4.0
 date: 2013-10-20
 
