@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.2
+date: 2013-10-28
+
+ - reset BUNDLE_GEMFILE before finishing, fix #57
+
 ## 1.4.1
 date: 2013-10-23
 
