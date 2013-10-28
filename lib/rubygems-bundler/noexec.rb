@@ -75,6 +75,7 @@ class Noexec
     log2 "rubygems_specs: #{rubygems_specs.map{|g| "#{g.name}-#{g.version}"}*" "}"
 
     @gemfile = ENV['BUNDLE_GEMFILE'] || File.join(Noexec::CURRENT, "Gemfile")
+    initial_env_gemfile = ENV['BUNDLE_GEMFILE']
 
     while true
       ENV['BUNDLE_GEMFILE'] = gemfile
@@ -88,8 +89,10 @@ class Noexec
       @gemfile = new_gemfile
     end
     log "No valid Gemfile found, moving on"
+    ENV['BUNDLE_GEMFILE'] = initial_env_gemfile
   rescue LoadError
     warn "bundler not being used, unable to load" if Noexec::DEBUG
+    ENV['BUNDLE_GEMFILE'] = initial_env_gemfile
   end
 
   def check
