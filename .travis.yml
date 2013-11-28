@@ -12,6 +12,7 @@ before_install:
   - hash -r
   - 'curl -L https://get.smf.sh | sh'
   - 'export PATH=~/.sm/bin:$PATH'
+  - 'gem install executable-hooks'
   - 'sm ext install gem mpapis/sm_gem'
 install: gem install tf -v '>=0.4.1'
 before_script:
