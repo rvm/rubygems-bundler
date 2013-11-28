@@ -1,12 +1,10 @@
 language: ruby
 rvm:
   - 1.8.7
-  - 1.9.2
   - 1.9.3
   - 2.0.0
   - ruby-head
-  - rbx-18mode
-  - rbx-19mode
+  - rbx
 before_install:
   - 'rm -rvf $rvm_path/gems/*/{bin,gems}/{rubygems-bundler-,executable-hooks-}* $rvm_path/gems/*/bin/ruby_*_wrapper'
   - hash -r
@@ -28,26 +26,13 @@ notifications:
     on_failure: change
 matrix:
   include:
-    - rvm: jruby-18mode
-      env: 'JRUBY_OPTS="-X-C --server -J-XX:+TieredCompilation"'
-      jdk: openjdk7
-    - rvm: jruby-19mode
-      env: 'JRUBY_OPTS="-X-C --server -J-XX:+TieredCompilation"'
-      jdk: openjdk7
     - rvm: jruby-head
       env: 'JRUBY_OPTS="-X-C --server -J-XX:+TieredCompilation"'
       jdk: openjdk7
   allow_failures:
-    - rvm: jruby-18mode
-      env: 'JRUBY_OPTS="-X-C --server -J-XX:+TieredCompilation"'
-      jdk: openjdk7
-    - rvm: jruby-19mode
-      env: 'JRUBY_OPTS="-X-C --server -J-XX:+TieredCompilation"'
-      jdk: openjdk7
     - rvm: jruby-head
       env: 'JRUBY_OPTS="-X-C --server -J-XX:+TieredCompilation"'
       jdk: openjdk7
-    - rvm: rbx-18mode
-    - rvm: rbx-19mode
     - rvm: ruby-head
+    - rvm: rbx
   fast_finish: true
