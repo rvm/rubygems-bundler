@@ -101,15 +101,23 @@ rubygems-bundler was merged with [noexec gem](https://github.com/joshbuddy/noexe
 
 ## Uninstallation
 
-    rubygems-bundler-uninstaller
     gem uninstall rubygems-bundler
+
+### Uninstallation of executable-hooks
+
+`rubygems-bundler` does not change the shebangs itself anymore, this was extracted to `executable-hooks`:
+
+    executable-hooks-uninstaller
+    gem uninstall executable-hooks
 
 this will set all gems to `/usr/bin/env ruby`, which is one of the safest choices (especially when using rvm).
 
+### Removing from RVM
+
 When using rvm, these additional steps will ensure this gem is removed and not installed again:
 
-    rvm get stable --without-gems=rubygems-bundler
-    rvm all-gemsets do gem uninstall --all --executables rubygems-bundler
+    rvm get stable --without-gems="rubygems-bundler executable-hooks"
+    rvm all-gemsets do gem uninstall --all --executables rubygems-bundler executable-hooks
 
 
 ## Authors
