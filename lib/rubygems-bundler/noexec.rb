@@ -17,8 +17,11 @@ class Noexec
     puts msg if Noexec::DEBUG
   end
 
-  def log2(msg)
-    puts msg if Noexec::DEBUG == "2"
+  def log2(msg=nil)
+    if Noexec::DEBUG == "2"
+      msg=yield if msg.nil? && block_given?
+      puts msg
+    end
   end
 
   def candidate?
@@ -41,7 +44,7 @@ class Noexec
       log "Config based matching didn't find it, resorting to Gemfile lookup"
     end
     runtime = Bundler.load
-    log2 "runtime specs: #{runtime.specs.map{|g| "#{g.name}-#{g.version}"}*" "}"
+    log2(){ "runtime specs: #{runtime.specs.map{|g| "#{g.name}-#{g.version}"}*" "}" }
     if rubygems_spec # that single gem
       missing_spec = runtime.
         instance_variable_get(:@definition).
@@ -72,7 +75,7 @@ class Noexec
     require "bundler-unload"
 
     @rubygems_specs = Bundler.rubygems.plain_specs # save it for unloading and checking binary
-    log2 "rubygems_specs: #{rubygems_specs.map{|g| "#{g.name}-#{g.version}"}*" "}"
+    log2(){ "rubygems_specs: #{rubygems_specs.map{|g| "#{g.name}-#{g.version}"}*" "}" }
 
     @gemfile = ENV['BUNDLE_GEMFILE'] || File.join(Noexec::CURRENT, "Gemfile")
     initial_env_gemfile = ENV['BUNDLE_GEMFILE']
