@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.3
+date: 2014-04-04
+
+ - deferred log2 for performance, update #59
+ - fix filtering gem executables on old rubygems, fix #59
+
 ## 1.4.2
 date: 2013-10-28
 
