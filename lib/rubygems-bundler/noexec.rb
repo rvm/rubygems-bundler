@@ -66,8 +66,15 @@ class Noexec
     false
   end
 
+  def old_specs
+    if Hash === rubygems_specs
+    then @rubygems_specs.values
+    else @rubygems_specs
+    end
+  end
+
   def rubygems_spec
-    @rubygems_spec ||= rubygems_specs.detect{|spec| spec.executables.include?(bin) }
+    @rubygems_spec ||= old_specs.detect{|spec| spec.executables.include?(bin) }
   end
 
   def setup
