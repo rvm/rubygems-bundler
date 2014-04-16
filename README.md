@@ -3,7 +3,11 @@
 
 # Note for RubyGems >= 2.2.0
 
-This gem is not needed on RubyGems >= 2.2.0. Simply set the `RUBYGEMS_GEMDEPS` environment variable to either the path of your Gemfile or `-` to auto-discover in parent directories.
+Generally, this gem is not needed on RubyGems >= 2.2.0. Simply set the `RUBYGEMS_GEMDEPS`
+environment variable to either the path of your Gemfile or `-` to auto-discover in parent directories.
+
+However, not all `Gemfile` syntax is supported yet. If you find bugs using `RUBYGEMS_GEMDEPS`, please
+[report them](https://github.com/rubygems/rubygems/issues).
 
 # rubygems-bundler && Noexec
 
