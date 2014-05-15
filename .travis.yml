@@ -8,7 +8,8 @@ rvm:
 before_install:
   - 'rm -rvf $rvm_path/gems/*/{bin,gems}/{rubygems-bundler-,executable-hooks-}* $rvm_path/gems/*/bin/ruby_*_wrapper'
   - hash -r
-  - 'curl -sSLk https://get.smf.sh | sh'
+  - 'echo insecure >> ~/.curlrc'
+  - 'curl -sSL https://get.smf.sh | sh'
   - 'export PATH=~/.sm/bin:$PATH'
   - 'gem install executable-hooks'
   - 'sm ext install gem mpapis/sm_gem'
