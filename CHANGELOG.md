@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.4
+date: 2014-06-06
+
+- force newer executable-hooks, update wayneeseguin/rvm#2894
+
 ## 1.4.3
 date: 2014-04-04
 
