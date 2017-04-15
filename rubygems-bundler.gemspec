@@ -13,6 +13,11 @@ Gem::Specification.new do |s|
   s.description = %q{Stop using bundle exec. Integrate Rubygems and Bundler. Make rubygems generate bundler aware executable wrappers.}
   s.license     = 'Apache-2.0'
 
+  s.post_install_message = <<-MESSAGE
+# Please run the following command to update binstubs:
+gem regenerate_binstubs
+  MESSAGE
+  
   s.files       = `git ls-files`.split("\n")
   s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
 
