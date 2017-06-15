@@ -136,7 +136,7 @@ When using rvm, these additional steps will ensure this gem is removed and not i
 ## Thanks
 
  - Carl Lerche     : help with the noexec code
- - Evan Phoenix    : support on rubygems internalls
+ - Evan Phoenix    : support on rubygems internals
  - Yehuda Katz     : the initial patch code, helping on making it even more usable
  - Loren Segal     : shebang customization idea and explanations
  - Wayne E. Seguin : support in writing good code
