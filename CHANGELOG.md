@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.5
+date: 2018-06-25
+
+- force executable-hooks 1.5.0+, update rvm/rvm#4408
+
 ## 1.4.4
 date: 2014-06-06
 

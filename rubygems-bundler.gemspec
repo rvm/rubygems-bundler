@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
 
   s.add_dependency "bundler-unload", ">=1.0.2"
-  s.add_dependency "executable-hooks", ">=1.3.2"
+  s.add_dependency "executable-hooks", ">=1.5.0"
   s.add_development_dependency "tf"
   #s.add_development_dependency "smf-gem"
 end
